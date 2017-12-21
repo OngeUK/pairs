@@ -1,6 +1,8 @@
 {
+	"plugins": ["stylelint-order"],
 	"rules": {
 		"color-no-invalid-hex": true,
+		"font-family-name-quotes": "always-unless-keyword",
 		"function-calc-no-unspaced-operator": true,
 		"function-comma-space-after": "always",
 		"function-comma-space-before": "never",
@@ -18,6 +20,7 @@
 		"length-zero-no-unit": true,
 		"unit-case": "lower",
 		"unit-no-unknown": true,
+		"value-keyword-case": "lower",
 		"value-no-vendor-prefix": true,
 		"value-list-comma-newline-after": "never-multi-line",
 		"value-list-comma-newline-before": "never-multi-line",
@@ -67,6 +70,7 @@
 		"selector-combinator-space-before": "always",
 		"selector-descendant-combinator-no-non-space": true,
 		"selector-max-compound-selectors": 5,
+		"selector-max-id": 0,
 		"selector-no-vendor-prefix": true,
 		"selector-pseudo-class-case": "lower",
 		"selector-pseudo-class-no-unknown": true,
@@ -90,7 +94,7 @@
 			"always",
 			{
 				"except": ["blockless-after-same-name-blockless"],
-				"ignore": ["after-comment"]
+				"ignore": ["after-comment", "inside-block"]
 			}
 		],
 		"at-rule-name-case": "lower",
@@ -98,7 +102,7 @@
 		"at-rule-no-unknown": [
 			true,
 			{
-				"ignoreAtRules": ["include", "mixin", "if", "else", "supports"]
+				"ignoreAtRules": ["include", "mixin", "if", "else"]
 			}
 		],
 		"at-rule-no-vendor-prefix": true,
@@ -112,6 +116,8 @@
 		"no-empty-source": true,
 		"no-eol-whitespace": true,
 		"no-extra-semicolons": true,
-		"no-unknown-animations": true
+		"no-unknown-animations": true,
+		"order/order": ["custom-properties", "declarations"],
+		"order/properties-alphabetical-order": true
 	}
 }

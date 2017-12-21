@@ -4,3 +4,135 @@
 
 @import "./utils/media-queries";
 @import "./variables";
+
+/*
+Grids
+4x3 = 12
+****
+****
+****
+
+4x4 = 16
+****
+****
+****
+****
+
+5x4 = 20
+*****
+*****
+*****
+*****
+
+6x4 = 24
+******
+******
+******
+******
+*/
+
+:root.grid-12 {
+	--grid-cols: 2;
+	--grid-padding: 1.5rem;
+	--max-grid-width: 100%;
+}
+
+@media (min-width: 45rem) {
+	:root.grid-12 {
+		--grid-cols: 4;
+		--max-grid-width: 95%;
+	}
+}
+
+@media (min-width: 75rem) {
+	:root.grid-12 {
+		--grid-padding: 2rem;
+		--grid-cols: 6;
+		--max-grid-width: 90%;
+	}
+}
+
+@media (min-width: 120rem) {
+	:root.grid-12 {
+		--max-grid-width: 110rem;
+	}
+}
+
+html,
+body {
+	align-items: center;
+	display: grid;
+	height: 100%;
+	justify-content: center;
+	margin: 0;
+	width: 100%;
+}
+
+.container {
+	margin: calc(var(--grid-padding) * 2) auto;
+	max-width: var(--max-grid-width);
+	width: 85vw;
+}
+
+.grid {
+	display: grid;
+	grid-gap: var(--grid-padding);
+	grid-template-columns: repeat(var(--grid-cols), 1fr);
+	width: 100%;
+}
+
+.grid__item {
+	border-radius: 10%;
+	position: relative;
+}
+
+.grid__item:nth-child(1n + 4) {
+	backface-visibility: visible;
+	transform: skew(-0.25deg, 1.5deg);
+	transform-origin: 50% 50% 0;
+}
+
+.grid__item:nth-child(5n) {
+	backface-visibility: visible;
+	transform: skew(0.5deg, -1.2deg);
+	transform-origin: 50% 50% 0;
+}
+
+.grid__item:nth-child(7n) {
+	backface-visibility: visible;
+	transform: skew(0.5deg, -1.2deg);
+	transform-origin: 50% 50% 0;
+}
+
+.tile {
+	border: 0.2rem solid #555;
+	border-radius: 10%;
+	padding-top: 100%;
+	transform: scale(0.95);
+	width: 100%;
+}
+
+.tile_back {
+	background: #ccc;
+	cursor: pointer;
+	z-index: 2;
+
+	&-flipped {
+		opacity: 0;
+	}
+}
+
+.tile_back:hover {
+	transform: scale(1);
+}
+
+.tile_front {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+
+	&-flipped {
+		opacity: 1;
+	}
+}

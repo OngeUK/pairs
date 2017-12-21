@@ -12,7 +12,7 @@ module.exports = {
 
 	// webpack entry point
 	entry: {
-		app: "./js/app"
+		app: "./index.js"
 	},
 
 	// webpack output
