@@ -13,40 +13,19 @@ export default class App extends Component {
 	}
 
 	componentWillMount() {
-		// Default app state
-		this.setState({
-			active: true,
-			selectedGame: "default",
-			gridSize: 12,
-			currentTile: null,
-			completed: 0
-		});
-
-		// Get state data
-		const {gridSize, selectedGame} = this.state;
-
-		// Load grid data from JSON file
-		let items = require(`./../data/${selectedGame}.json`);
-
-		// Get random data to form grid
-		items = sampleSize(items.data, gridSize / 2);
-
-		// Duplicate so we have a pair of each
-		let pairs = [...items, ...items];
-
-		// Randomise again
-		pairs = shuffle(pairs);
-
-		this.setState({
-			gridData: pairs
-		});
+		newGame(this);
 	}
 
 	tileInteraction(value, element) {
 		if (this.state.active) {
+			const {gridData} = this.state;
+
 			// Show selected tile
-			element.firstChild.className += " tile_back-flipped";
-			element.lastChild.className += " tile_front-flipped";
+			gridData[element.id].flipped = true;
+
+			this.setState({
+				gridData: gridData
+			});
 
 			// If first tile selected
 			if (this.state.currentTile === null) {
@@ -59,7 +38,7 @@ export default class App extends Component {
 				});
 			} else if (this.state.currentTile.tile !== element) {
 				// If the two selected tiles do not match
-				if (parseInt(element.dataset.value) !== this.state.currentTile.value) {
+				if (element.dataset.value.toString() !== this.state.currentTile.value.toString()) {
 					// Disable tile clicks until incorrect pairings have reset
 					this.setState({
 						active: false
@@ -67,17 +46,15 @@ export default class App extends Component {
 
 					// Flip tiles back after a short delay
 					setTimeout(() => {
-						element.firstChild.className = "tile tile_back";
-						element.lastChild.className = "tile tile_front";
-
 						// Hide tiles
-						this.state.currentTile.tile.firstChild.className = "tile tile_back";
-						this.state.currentTile.tile.lastChild.className = "tile tile_front";
+						gridData[this.state.currentTile.tile.id].flipped = false;
+						gridData[element.id].flipped = false;
 
-						// Reset the state for the next go
+						// Player got it wrong - reset the state for the next go
 						this.setState({
 							active: true,
-							currentTile: null
+							currentTile: null,
+							gridData: gridData
 						});
 					}, 1500);
 				} else {
@@ -90,7 +67,8 @@ export default class App extends Component {
 
 					// Has the player matched all the pairs?
 					if (this.state.gridSize === this.state.completed) {
-						alert("Well done!");
+						alert("Well done!\n👍👍👍");
+						newGame(this);
 					}
 				}
 			}
@@ -98,6 +76,67 @@ export default class App extends Component {
 	}
 
 	render() {
-		return <Grid gridData={this.state.gridData} tileInteraction={this.tileInteraction} />;
+		return <Grid gridSize={this.state.gridSize} gridData={this.state.gridData} tileInteraction={this.tileInteraction} />;
 	}
+}
+
+// Set up a new game
+function newGame(_this) {
+	// Default app state
+	_this.setState({
+		active: false,
+		selectedGame: "letters",
+		gridSize: 12,
+		currentTile: null,
+		completed: 0
+	});
+
+	// Get state data
+	const {gridSize, selectedGame} = _this.state;
+
+	// Load grid data from JSON file
+	let items = require(`./../data/${selectedGame}.json`);
+
+	// Get random data to form grid
+	items = sampleSize(items.data, gridSize / 2);
+
+	// Duplicate so we have a pair of each
+	let pairs = [...items, ...items];
+
+	// Randomise again
+	pairs = shuffle(pairs);
+
+	// Build full grid data
+	let gridData = [];
+
+	for (const pair of pairs) {
+		gridData.push({
+			value: pair,
+			flipped: true
+		});
+	}
+
+	// Add to state
+	_this.setState({
+		gridData: gridData
+	});
+
+	// Have a short delay where you can see all the tiles flipped before playing
+	// (This is designed for pre-schoolers, so we don't want to make it too hard!)
+
+	// Hide tiles after a delay (depending on how many tiles are in the grid)
+	setTimeout(() => {
+		const initialGridData = _this.state.gridData;
+
+		const gridData = initialGridData.map((value) => {
+			value.flipped = false;
+			return value;
+		});
+
+		// Update state to start game
+		_this.setState({
+			active: true,
+			gridData: gridData
+		});
+	}, 200 * _this.state.gridSize);
 }

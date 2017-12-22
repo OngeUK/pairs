@@ -31,21 +31,21 @@ Grids
 ******
 */
 
-:root.grid-12 {
+.container.grid-12 {
 	--grid-cols: 2;
 	--grid-padding: 1.5rem;
 	--max-grid-width: 100%;
 }
 
 @media (min-width: 45rem) {
-	:root.grid-12 {
+	.container.grid-12 {
 		--grid-cols: 4;
 		--max-grid-width: 95%;
 	}
 }
 
 @media (min-width: 75rem) {
-	:root.grid-12 {
+	.container.grid-12 {
 		--grid-padding: 2rem;
 		--grid-cols: 6;
 		--max-grid-width: 90%;
@@ -53,7 +53,7 @@ Grids
 }
 
 @media (min-width: 120rem) {
-	:root.grid-12 {
+	.container.grid-12 {
 		--max-grid-width: 110rem;
 	}
 }

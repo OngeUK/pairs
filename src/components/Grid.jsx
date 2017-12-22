@@ -3,11 +3,13 @@ import Tile from "./Tile";
 
 export default class Grid extends Component {
 	render() {
+		const {gridSize, gridData, tileInteraction} = this.props;
+
 		return (
-			<div class="container">
+			<div class={`container grid-${gridSize}`}>
 				<div class="grid">
-					{this.props.gridData.map((value, i) => {
-						return <Tile key={i} id={`item-${i}`} value={value} tileInteraction={this.props.tileInteraction} />;
+					{gridData.map((item, i) => {
+						return <Tile id={i} value={item.value} flipped={item.flipped} tileInteraction={tileInteraction} />;
 					})}
 				</div>
 			</div>
