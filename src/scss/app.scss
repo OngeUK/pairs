@@ -1,0 +1,27 @@
+/* ----------
+- Core app based SCSS
+---------- */
+
+@import "./variables";
+@import "./grid";
+@import "./tile";
+
+html,
+body {
+	align-items: center;
+	display: grid;
+	height: 100%;
+	justify-content: center;
+	margin: 0;
+	width: 100%;
+}
+
+.bg {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}

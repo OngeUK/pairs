@@ -1,0 +1,36 @@
+/* ----------
+- Individual tile SCSS
+---------- */
+
+.tile {
+	background: #fefef9;
+	border-radius: 10%;
+	border-style: solid;
+	border-width: 0.2rem;
+	padding-top: 100%;
+	transform: scale(0.95);
+	width: 100%;
+}
+
+.tile_back {
+	cursor: pointer;
+	z-index: 2;
+
+	&-flipped {
+		opacity: 0;
+	}
+}
+
+.tile_back:hover {
+	transform: scale(1);
+}
+
+.tile_front {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+
+	&-flipped {
+		opacity: 1;
+	}
+}
