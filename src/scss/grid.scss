@@ -1,0 +1,82 @@
+/* ----------
+- Grid SCSS
+---------- */
+
+.container {
+	--grid-cols: 2;
+	--grid-padding: 1.5rem;
+	--max-grid-width: 100%;
+	margin: calc(var(--grid-padding) * 2) auto;
+	max-width: var(--max-grid-width);
+	width: 85vw;
+
+	@media ($bp-s) {
+		--max-grid-width: 95%;
+	}
+
+	@media ($bp-m) {
+		--grid-padding: 2rem;
+		--max-grid-width: 90%;
+	}
+
+	@media ($bp-l) {
+		--max-grid-width: 110rem;
+	}
+}
+
+.grid {
+	display: grid;
+	grid-gap: var(--grid-padding);
+	grid-template-columns: repeat(var(--grid-cols), 1fr);
+	width: 100%;
+}
+
+.grid__item {
+	backface-visibility: visible;
+	border-radius: 10%;
+	position: relative;
+	transform-origin: 50% 50% 0;
+}
+
+// Set CSS variable depending on the grid size
+.grid-12 {
+	@media ($bp-s) {
+		--grid-cols: 4;
+	}
+
+	@media ($bp-m) {
+		--grid-cols: 6;
+	}
+}
+
+.grid-16 {
+	@media ($bp-s) {
+		--grid-cols: 4;
+	}
+
+	@media ($bp-m) {
+		--grid-cols: 4;
+		--max-grid-width: 60%;
+	}
+
+	@media ($bp-l) {
+		--grid-cols: 8;
+		--max-grid-width: 95%;
+	}
+}
+
+.grid-20 {
+	@media ($bp-s) {
+		--grid-cols: 5;
+	}
+
+	@media ($bp-m) {
+		--grid-cols: 5;
+		--max-grid-width: 80%;
+	}
+
+	@media ($bp-l) {
+		--grid-cols: 5;
+		--max-grid-width: 65%;
+	}
+}

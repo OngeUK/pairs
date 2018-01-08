@@ -3,6 +3,7 @@ import Grid from "./Grid";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
+const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
 export default class App extends Component {
 	constructor() {
@@ -67,8 +68,15 @@ export default class App extends Component {
 
 					// Has the player matched all the pairs?
 					if (this.state.gridSize === this.state.completed) {
-						alert("Well done!\n👍👍👍");
-						newGame(this);
+						// If player has yet to complete the largest grid, level up
+						if (this.state.gridSize !== 20) {
+							alert("Well done!\n👍👍👍");
+							newGame(this, this.state.selectedGame, this.state.gridSize + 4);
+						} else {
+							// Game over - return to home screen
+							alert("Game over!");
+							newGame(this, this.state.selectedGame);
+						}
 					}
 				}
 			}
@@ -81,12 +89,12 @@ export default class App extends Component {
 }
 
 // Set up a new game
-function newGame(_this) {
+function newGame(_this, game = "letters", size = 12) {
 	// Default app state
 	_this.setState({
 		active: false,
-		selectedGame: "letters",
-		gridSize: 12,
+		selectedGame: game,
+		gridSize: size,
 		currentTile: null,
 		completed: 0
 	});
@@ -106,14 +114,18 @@ function newGame(_this) {
 	// Randomise again
 	pairs = shuffle(pairs);
 
-	// Build full grid data
-	let gridData = [];
+	let gridData = [],
+		number = 0;
 
+	// Build full grid data
 	for (const pair of pairs) {
 		gridData.push({
 			value: pair,
-			flipped: true
+			flipped: true,
+			colour: `#${(Math.random() * 0x808080 + 0x808080).toString(16).substring(0, 6)}`,
+			angle: number % 2 === 0 ? `transform: rotate(${random(-1.5, 0, true)}deg);` : `transform: rotate(${random(0, 1.5, true)}deg);` // Randomise angle tile item is displayed at
 		});
+		number++;
 	}
 
 	// Add to state
