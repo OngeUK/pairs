@@ -3,34 +3,41 @@
 ---------- */
 
 .tile {
-	background: #fefef9;
+	backface-visibility: hidden;
+	background: #fff;
 	border-radius: 10%;
 	border-style: solid;
 	border-width: 0.2rem;
+	box-sizing: border-box;
+	outline: 1px solid transparent; // Fixes anti-aliasing in Firefox
 	padding-top: 100%;
-	transform: scale(0.95);
+	transform-style: preserve-3d;
+	transition: 400ms;
 	width: 100%;
+
+	&-wrapper {
+		transition: 500ms cubic-bezier(0, 0.01, 0.22, 1.5);
+	}
 }
 
 .tile_back {
 	cursor: pointer;
+	transform: rotateY(0deg);
 	z-index: 2;
 
 	&-flipped {
-		opacity: 0;
+		transform: rotateY(180deg);
 	}
 }
 
-.tile_back:hover {
-	transform: scale(1);
-}
-
 .tile_front {
+	background: #ccc;
 	position: absolute;
 	top: 0;
+	transform: rotateY(180deg);
 	z-index: 1;
 
 	&-flipped {
-		opacity: 1;
+		transform: rotateY(0deg);
 	}
 }

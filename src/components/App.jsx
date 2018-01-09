@@ -5,16 +5,26 @@ const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
 const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
+// TO DO - split functions into their own files
+
 export default class App extends Component {
 	constructor() {
 		super();
 
-		// Bind custom method
+		// Bind custom methods
 		this.tileInteraction = this.tileInteraction.bind(this);
+		this.tilePulse = this.tilePulse.bind(this);
 	}
 
 	componentWillMount() {
 		newGame(this);
+	}
+
+	tilePulse(tileId, type = "add") {
+		const {gridData} = this.state,
+			value = (type === "add");
+
+		gridData[parseInt(tileId)].pulse = value;
 	}
 
 	tileInteraction(value, element) {
@@ -59,32 +69,43 @@ export default class App extends Component {
 						});
 					}, 1500);
 				} else {
-					// Player matched a pair - reset the state for the next go
-					this.setState({
-						active: true,
-						currentTile: null,
-						completed: this.state.completed + 2
-					});
+					// Player matched a pair - setTimeouts to allow for transitions/animations to fire first
+					setTimeout(() => {
+						// Get IDs of the pair of tiles
+						const pairs = document.querySelectorAll(`div[data-value='${element.dataset.value}']`);
 
-					// Has the player matched all the pairs?
-					if (this.state.gridSize === this.state.completed) {
-						// If player has yet to complete the largest grid, level up
-						if (this.state.gridSize !== 20) {
-							alert("Well done!\n👍👍👍");
-							newGame(this, this.state.selectedGame, this.state.gridSize + 4);
-						} else {
-							// Game over - return to home screen
-							alert("Game over!");
-							newGame(this, this.state.selectedGame);
+						// Update pulse state
+						for (const tile of pairs) {
+							this.tilePulse(parseInt(tile.id));
 						}
-					}
+
+						// Reset the state for the next go
+						this.setState({
+							active: true,
+							currentTile: null,
+							completed: this.state.completed + 2
+						});
+
+						// Has the player matched all the pairs?
+						if (this.state.gridSize === this.state.completed) {
+							// If player has yet to complete the largest grid, level up
+							if (this.state.gridSize !== 20) {
+								alert("Well done!\n👍👍👍");
+								newGame(this, this.state.selectedGame, this.state.gridSize + 4);
+							} else {
+								// Game over - return to home screen
+								alert("Game over!");
+								newGame(this, this.state.selectedGame);
+							}
+						}
+					}, 500);
 				}
 			}
 		}
 	}
 
 	render() {
-		return <Grid gridSize={this.state.gridSize} gridData={this.state.gridData} tileInteraction={this.tileInteraction} />;
+		return <Grid gridSize={this.state.gridSize} gridData={this.state.gridData} tileInteraction={this.tileInteraction} tilePulse={this.tilePulse} />;
 	}
 }
 
@@ -122,6 +143,7 @@ function newGame(_this, game = "letters", size = 12) {
 		gridData.push({
 			value: pair,
 			flipped: true,
+			pulse: false,
 			colour: `#${(Math.random() * 0x808080 + 0x808080).toString(16).substring(0, 6)}`,
 			angle: number % 2 === 0 ? `transform: rotate(${random(-1.5, 0, true)}deg);` : `transform: rotate(${random(0, 1.5, true)}deg);` // Randomise angle tile item is displayed at
 		});

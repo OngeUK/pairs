@@ -28,55 +28,75 @@
 	display: grid;
 	grid-gap: var(--grid-padding);
 	grid-template-columns: repeat(var(--grid-cols), 1fr);
+	perspective: 1000px;
 	width: 100%;
-}
 
-.grid__item {
-	backface-visibility: visible;
-	border-radius: 10%;
-	position: relative;
-	transform-origin: 50% 50% 0;
-}
+	&__item {
+		backface-visibility: visible;
+		border-radius: 10%;
+		outline: 1px solid transparent; // Fixes anti-aliasing in Firefox
+		position: relative;
+		transform-origin: 50% 50% 0;
 
-// Set CSS variable depending on the grid size
-.grid-12 {
-	@media ($bp-s) {
-		--grid-cols: 4;
+		&_pulse {
+			animation: 500ms pulse;
+		}
 	}
 
-	@media ($bp-m) {
-		--grid-cols: 6;
-	}
-}
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
 
-.grid-16 {
-	@media ($bp-s) {
-		--grid-cols: 4;
-	}
+		50% {
+			transform: scale(1.25);
+		}
 
-	@media ($bp-m) {
-		--grid-cols: 4;
-		--max-grid-width: 60%;
-	}
-
-	@media ($bp-l) {
-		--grid-cols: 8;
-		--max-grid-width: 95%;
-	}
-}
-
-.grid-20 {
-	@media ($bp-s) {
-		--grid-cols: 5;
+		100% {
+			transform: scale(1);
+		}
 	}
 
-	@media ($bp-m) {
-		--grid-cols: 5;
-		--max-grid-width: 80%;
+	// Set CSS variable depending on the grid size
+	&-12 {
+		@media ($bp-s) {
+			--grid-cols: 4;
+		}
+
+		@media ($bp-m) {
+			--grid-cols: 6;
+		}
 	}
 
-	@media ($bp-l) {
-		--grid-cols: 5;
-		--max-grid-width: 65%;
+	&-16 {
+		@media ($bp-s) {
+			--grid-cols: 4;
+		}
+
+		@media ($bp-m) {
+			--grid-cols: 4;
+			--max-grid-width: 60%;
+		}
+
+		@media ($bp-l) {
+			--grid-cols: 8;
+			--max-grid-width: 95%;
+		}
+	}
+
+	&-20 {
+		@media ($bp-s) {
+			--grid-cols: 5;
+		}
+
+		@media ($bp-m) {
+			--grid-cols: 5;
+			--max-grid-width: 80%;
+		}
+
+		@media ($bp-l) {
+			--grid-cols: 5;
+			--max-grid-width: 65%;
+		}
 	}
 }
