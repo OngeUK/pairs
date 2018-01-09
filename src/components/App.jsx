@@ -22,7 +22,7 @@ export default class App extends Component {
 
 	tilePulse(tileId, type = "add") {
 		const {gridData} = this.state,
-			value = (type === "add");
+			value = type === "add";
 
 		gridData[parseInt(tileId)].pulse = value;
 	}
@@ -109,8 +109,8 @@ export default class App extends Component {
 	}
 }
 
-// Set up a new game
-function newGame(_this, game = "letters", size = 12) {
+// Set up a new game (default of animals for now)
+function newGame(_this, game = "animals", size = 12) {
 	// Default app state
 	_this.setState({
 		active: false,
@@ -144,7 +144,7 @@ function newGame(_this, game = "letters", size = 12) {
 			value: pair,
 			flipped: true,
 			pulse: false,
-			colour: `#${(Math.random() * 0x808080 + 0x808080).toString(16).substring(0, 6)}`,
+			colour: `#${(Math.random() * 0x666666 + 0x666666).toString(16).substring(0, 6)}`,
 			angle: number % 2 === 0 ? `transform: rotate(${random(-1.5, 0, true)}deg);` : `transform: rotate(${random(0, 1.5, true)}deg);` // Randomise angle tile item is displayed at
 		});
 		number++;

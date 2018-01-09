@@ -91,6 +91,13 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.(woff|woff2)$/,
+				loader: "file-loader",
+				options: {
+					name: "fonts/[name].[ext]"
+				}
+			},
+			{
 				// Images
 				test: /\.(png|jpg|gif|svg)$/,
 				use: [

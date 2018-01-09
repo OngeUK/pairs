@@ -34,13 +34,18 @@ export default class Tile extends Component {
 			<div id={id} data-value={value} class={`grid__item${pulseCss}`} onClick={() => this.revealTile()}>
 				<div class="tile-wrapper" style={angle}>
 					<div class={`tile tile_back${backFlippedCss}`} style={{borderColor: `${colour}`}} />
-					<div class={`tile tile_front${frontFlippedCss}`} style={{borderColor: `${colour}`}}>
-						<div class="tile__content">
-							<span style="position: absolute; top: 0; font-size: 3rem; text-align: center; width: 100%;">{value}</span>
-						</div>
+					<div
+						class={`tile tile_front${frontFlippedCss}`}
+						style={{borderColor: `${colour}`, backgroundImage: `url("${require(`./../images/${formatImageUrl(value)}.jpg`)}")`}}
+					>
+						<div class="tile__content">{value}</div>
 					</div>
 				</div>
 			</div>
 		);
 	}
+}
+
+function formatImageUrl(value) {
+	return value.replace(" ", "-").toLowerCase();
 }

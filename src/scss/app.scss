@@ -5,6 +5,7 @@
 @import "./variables";
 @import "./grid";
 @import "./tile";
+@import "./fonts";
 
 html,
 body {
@@ -14,6 +15,12 @@ body {
 	justify-content: center;
 	margin: 0;
 	width: 100%;
+}
+
+body {
+	color: #fff;
+	font-family: "Gloria Hallelujah";
+	text-shadow: 1px 1px 1px #000;
 }
 
 .bg {
