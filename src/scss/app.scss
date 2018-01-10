@@ -6,6 +6,7 @@
 @import "./grid";
 @import "./tile";
 @import "./fonts";
+@import "./buttons";
 
 html,
 body {
@@ -18,6 +19,7 @@ body {
 }
 
 body {
+	background: #fcf9e7;
 	color: #fff;
 	font-family: "Gloria Hallelujah";
 	text-shadow: 1px 1px 1px #000;

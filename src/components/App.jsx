@@ -1,5 +1,6 @@
 import {h, Component} from "preact";
 import Grid from "./Grid";
+import ButtonSound from "./ButtonSound";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
@@ -14,12 +15,21 @@ export default class App extends Component {
 		// Bind custom methods
 		this.tileInteraction = this.tileInteraction.bind(this);
 		this.tilePulse = this.tilePulse.bind(this);
+		this.soundToggle = this.soundToggle.bind(this);
 	}
 
 	componentWillMount() {
 		newGame(this);
 	}
 
+	// Toggle game sound on or off
+	soundToggle() {
+		this.setState({
+			sound: !this.state.sound
+		});
+	}
+
+	// Pulsate matching tiles
 	tilePulse(tileId, type = "add") {
 		const {gridData} = this.state,
 			value = type === "add";
@@ -27,6 +37,7 @@ export default class App extends Component {
 		gridData[parseInt(tileId)].pulse = value;
 	}
 
+	// Flip tile
 	tileInteraction(value, element) {
 		if (this.state.active) {
 			const {gridData} = this.state;
@@ -105,7 +116,19 @@ export default class App extends Component {
 	}
 
 	render() {
-		return <Grid gridSize={this.state.gridSize} gridData={this.state.gridData} tileInteraction={this.tileInteraction} tilePulse={this.tilePulse} />;
+		return (
+			<div>
+				<ButtonSound on={this.state.sound} toggle={this.soundToggle} />
+				<Grid
+					active={this.state.active}
+					sound={this.state.sound}
+					gridSize={this.state.gridSize}
+					gridData={this.state.gridData}
+					tileInteraction={this.tileInteraction}
+					tilePulse={this.tilePulse}
+				/>
+			</div>
+		);
 	}
 }
 
@@ -117,7 +140,8 @@ function newGame(_this, game = "animals", size = 12) {
 		selectedGame: game,
 		gridSize: size,
 		currentTile: null,
-		completed: 0
+		completed: 0,
+		sound: true
 	});
 
 	// Get state data

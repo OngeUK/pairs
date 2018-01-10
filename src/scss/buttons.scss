@@ -1,0 +1,38 @@
+/* ----------
+- Buttons SCSS
+---------- */
+
+.btn {
+	&-sound {
+		appearance: none;
+		background-color: transparent;
+		background-image: url("../images/icons/icon-speaker.svg");
+		background-size: 100% auto;
+		border: 0;
+		height: 1.75rem;
+		position: absolute;
+		right: 0.5rem;
+		text-indent: -999rem;
+		top: 0.5rem;
+		width: 1.75rem;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&_disabled {
+			opacity: 0.3;
+
+			&::before {
+				background: #f00;
+				content: "";
+				height: 4px;
+				left: 0;
+				position: absolute;
+				top: 0.8rem;
+				transform: rotate(-45deg);
+				width: 120%;
+			}
+		}
+	}
+}

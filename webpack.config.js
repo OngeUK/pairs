@@ -122,7 +122,7 @@ module.exports = {
 				loader: "html-loader"
 			},
 			{
-				// Images
+				// Images - TO DO: add image compression
 				test: /\.(png|jpg|gif|svg)$/,
 				use: [
 					{
