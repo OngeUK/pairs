@@ -1,6 +1,7 @@
 import {h, Component} from "preact";
 import Grid from "./Grid";
 import ButtonSound from "./ButtonSound";
+import LevelComplete from "./LevelComplete";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
@@ -16,10 +17,17 @@ export default class App extends Component {
 		this.tileInteraction = this.tileInteraction.bind(this);
 		this.tilePulse = this.tilePulse.bind(this);
 		this.soundToggle = this.soundToggle.bind(this);
+		this.startNewStage = this.startNewStage.bind(this);
 	}
 
 	componentWillMount() {
 		newGame(this);
+	}
+
+	componentDidMount() {
+		this.setState({
+			emoji: selectRandomEmoji()
+		});
 	}
 
 	// Toggle game sound on or off
@@ -37,14 +45,25 @@ export default class App extends Component {
 		gridData[parseInt(tileId)].pulse = value;
 	}
 
+	// Reset stageOver state
+	startNewStage() {
+		this.setState({
+			stageOver: false,
+			emoji: selectRandomEmoji()
+		});
+	}
+
 	// Flip tile
 	tileInteraction(value, element) {
+		// TO DO - click spamming bug fix
+
 		if (this.state.active) {
 			const {gridData} = this.state;
 
 			// Show selected tile
 			gridData[element.id].flipped = true;
 
+			// Update state with new values
 			this.setState({
 				gridData: gridData
 			});
@@ -99,15 +118,20 @@ export default class App extends Component {
 
 						// Has the player matched all the pairs?
 						if (this.state.gridSize === this.state.completed) {
-							// If player has yet to complete the largest grid, level up
-							if (this.state.gridSize !== 20) {
-								alert("Well done!\n👍👍👍");
-								newGame(this, this.state.selectedGame, this.state.gridSize + 4);
-							} else {
-								// Game over - return to home screen
-								alert("Game over!");
-								newGame(this, this.state.selectedGame);
-							}
+							this.setState({
+								stageOver: true
+							});
+
+							// Allow animations to fire before setting next game
+							setTimeout(() => {
+								// If player has yet to complete the largest grid, level up
+								if (this.state.gridSize !== 20) {
+									newGame(this, this.state.selectedGame, this.state.gridSize + 4);
+								} else {
+									// Game over - return to home screen
+									newGame(this, this.state.selectedGame);
+								}
+							}, 4000);
 						}
 					}, 500);
 				}
@@ -127,6 +151,7 @@ export default class App extends Component {
 					tileInteraction={this.tileInteraction}
 					tilePulse={this.tilePulse}
 				/>
+				<LevelComplete stageOver={this.state.stageOver} startNewStage={this.startNewStage} emoji={this.state.emoji} />
 			</div>
 		);
 	}
@@ -197,4 +222,12 @@ function newGame(_this, game = "animals", size = 12) {
 			gridData: gridData
 		});
 	}, 200 * _this.state.gridSize);
+}
+
+// Select emoji at random
+function selectRandomEmoji() {
+	let emojis = ["😃", "😁", "😄", "😊", "🙂", "😋"];
+
+	emojis = shuffle(emojis);
+	return emojis[0];
 }

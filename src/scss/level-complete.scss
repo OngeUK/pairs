@@ -1,0 +1,98 @@
+/* ----------
+- Level complete SCSS
+---------- */
+
+$transitionSpeed: 500ms;
+$easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
+
+.level-complete {
+	display: flex;
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+
+	&_hide {
+		display: none;
+	}
+
+	&__overlay {
+		background: #fff;
+		height: 100%;
+		left: 0;
+		opacity: 0.85;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		transition: opacity $transitionSpeed linear;
+		width: 100%;
+		z-index: 1;
+
+		&_hide {
+			opacity: 0;
+		}
+	}
+
+	&__sunbeams {
+		align-items: center;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		overflow: hidden;
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+
+		&-bg {
+			animation: sunbeams 60s infinite linear;
+			background-image: url("../images/sunbeams.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 66%;
+			height: 100%;
+			padding-left: 200%;
+			padding-top: 200%;
+			transition: $transitionSpeed $easing;
+			width: 100%;
+			z-index: 2;
+
+			&_hide {
+				background-size: 0;
+			}
+		}
+	}
+
+	&__contents {
+		align-items: center;
+		display: flex;
+		font-range: 25rem 130rem;
+		font-size: responsive 200px 500px;
+		height: 100%;
+		justify-content: center;
+		opacity: 1;
+		transform: scale(1);
+		transition: $transitionSpeed $easing;
+		width: 100%;
+		z-index: 3;
+
+		&_hide {
+			opacity: 0;
+			transform: scale(0);
+		}
+
+		&-emoji {
+			margin-top: -6%;
+		}
+	}
+}
+
+@keyframes sunbeams {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

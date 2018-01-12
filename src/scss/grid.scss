@@ -8,7 +8,7 @@
 	--max-grid-width: 100%;
 	margin: calc(var(--grid-padding) * 2) auto;
 	max-width: var(--max-grid-width);
-	width: 85vw;
+	width: 80vw;
 
 	@media ($bp-s) {
 		--max-grid-width: 95%;
