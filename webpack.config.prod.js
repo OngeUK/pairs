@@ -16,7 +16,7 @@ module.exports = {
 
 	// webpack entry point
 	entry: {
-		app: "./js/app"
+		app: "./index.js"
 	},
 
 	// webpack output
@@ -91,6 +91,7 @@ module.exports = {
 				}
 			},
 			{
+				// Fonts
 				test: /\.(woff|woff2)$/,
 				loader: "file-loader",
 				options: {
@@ -101,24 +102,37 @@ module.exports = {
 				// Images
 				test: /\.(png|jpg|gif|svg)$/,
 				use: [
+					"file-loader?name=[path][name].[ext]",
 					{
-						loader: "url-loader",
+						loader: "img-loader",
 						options: {
-							limit: 10000,
-							name: "../../higherorlower/es6/images/[name].[ext]",
-							publicPath: "/"
+							gifsicle: {
+								interlaced: false
+							},
+							mozjpeg: {
+								quality: 85,
+								progressive: true
+							},
+							optipng: true,
+							pngquant: {
+								floyd: 0.5,
+								speed: 2
+							},
+							svgo: {
+								plugins: [{removeTitle: true}, {convertPathData: false}]
+							}
 						}
 					}
 				]
 			},
 			{
-				// Manifest and favicon
-				test: /\.(ico|json)$/,
+				// Favicon
+				test: /\.(ico)$/,
 				use: [
 					{
 						loader: "file-loader",
 						options: {
-							name: "[name].[ext]",
+							name: "[path][name].[ext]",
 							publicPath: "/"
 						}
 					}

@@ -122,15 +122,28 @@ module.exports = {
 				loader: "html-loader"
 			},
 			{
-				// Images - TO DO: add image compression
+				// Images
 				test: /\.(png|jpg|gif|svg)$/,
 				use: [
+					"file-loader?name=[path][name].[ext]",
 					{
-						loader: "url-loader",
+						loader: "img-loader",
 						options: {
-							limit: 10000,
-							name: "images/[name].[ext]",
-							publicPath: "/"
+							gifsicle: {
+								interlaced: false
+							},
+							mozjpeg: {
+								quality: 85,
+								progressive: true
+							},
+							optipng: true,
+							pngquant: {
+								floyd: 0.5,
+								speed: 2
+							},
+							svgo: {
+								plugins: [{removeTitle: true}, {convertPathData: false}]
+							}
 						}
 					}
 				]
