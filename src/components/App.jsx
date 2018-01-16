@@ -2,6 +2,8 @@ import {h, Component} from "preact";
 import Grid from "./Grid";
 import ButtonSound from "./ButtonSound";
 import LevelComplete from "./LevelComplete";
+import Loader from "./Loader";
+import {animals} from "./../data/animals";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
@@ -18,16 +20,28 @@ export default class App extends Component {
 		this.tilePulse = this.tilePulse.bind(this);
 		this.soundToggle = this.soundToggle.bind(this);
 		this.startNewStage = this.startNewStage.bind(this);
+		this.contentLoaded = this.contentLoaded.bind(this);
 	}
 
 	componentWillMount() {
-		newGame(this);
+		//newGame(this);
+		this.setState({
+			loading: true
+		});
 	}
 
 	componentDidMount() {
 		this.setState({
 			emoji: selectRandomEmoji()
 		});
+	}
+
+	// Start game when assets have preloaded
+	contentLoaded() {
+		this.setState({
+			loading: false
+		});
+		newGame(this);
 	}
 
 	// Toggle game sound on or off
@@ -140,20 +154,28 @@ export default class App extends Component {
 	}
 
 	render() {
-		return (
-			<div>
-				<ButtonSound on={this.state.sound} toggle={this.soundToggle} />
-				<Grid
-					active={this.state.active}
-					sound={this.state.sound}
-					gridSize={this.state.gridSize}
-					gridData={this.state.gridData}
-					tileInteraction={this.tileInteraction}
-					tilePulse={this.tilePulse}
-				/>
-				<LevelComplete stageOver={this.state.stageOver} startNewStage={this.startNewStage} emoji={this.state.emoji} />
-			</div>
-		);
+		let output;
+
+		if (this.state.loading) {
+			output = <Loader contentLoaded={this.contentLoaded} />;
+		} else {
+			output = (
+				<div>
+					<ButtonSound on={this.state.sound} toggle={this.soundToggle} />
+					<Grid
+						active={this.state.active}
+						sound={this.state.sound}
+						gridSize={this.state.gridSize}
+						gridData={this.state.gridData}
+						tileInteraction={this.tileInteraction}
+						tilePulse={this.tilePulse}
+					/>
+					<LevelComplete stageOver={this.state.stageOver} startNewStage={this.startNewStage} emoji={this.state.emoji} />
+				</div>
+			);
+		}
+
+		return <div>{output}</div>;
 	}
 }
 
@@ -172,8 +194,14 @@ function newGame(_this, game = "animals", size = 12) {
 	// Get state data
 	const {gridSize, selectedGame} = _this.state;
 
-	// Load grid data from JSON file
-	let items = require(`./../data/${selectedGame}.json`);
+	// Load correct game grid data
+	let items;
+
+	switch (selectedGame) {
+		case "animals":
+			items = animals;
+			break;
+	}
 
 	// Get random data to form grid
 	items = sampleSize(items.data, gridSize / 2);

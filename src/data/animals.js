@@ -1,5 +1,5 @@
-{
-	"data": [
+export const animals = {
+	data: [
 		"Bear",
 		"Bee",
 		"Butterfly",
@@ -31,4 +31,4 @@
 		"Turtle",
 		"Zebra"
 	]
-}
+};

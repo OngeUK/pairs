@@ -1,0 +1,16 @@
+/* ----------
+- Pre-loader SCSS
+---------- */
+
+.loader {
+	background: #fff;
+	clip-path: url("#mask");
+	height: 180px;
+	transition: 150ms linear;
+	width: 180px;
+
+	&_progress {
+		background: #f9e9d6;
+		width: 0;
+	}
+}

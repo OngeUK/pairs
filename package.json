@@ -8,8 +8,11 @@
 	},
 	"scripts": {
 		"serve": "webpack-dev-server --inline --hot --open",
-		"build": "rimraf dist && webpack --config webpack.config.prod.js -p --progress",
+		"build": "rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js",
 		"oldbuild": "jest && rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/critical.js"
+	},
+	"dependencies": {
+		"preact": "8.2.6"
 	},
 	"devDependencies": {
 		"@types/react": "16.0.31",
@@ -25,6 +28,7 @@
 		"cross-env": "5.1.1",
 		"css-loader": "0.28.7",
 		"css-mqpacker": "6.0.1",
+		"directory-tree": "2.0.0",
 		"eslint": "4.13.1",
 		"eslint-config-standard": "10.2.1",
 		"eslint-config-standard-preact": "1.1.6",
@@ -45,7 +49,6 @@
 		"postcss-loader": "2.0.9",
 		"postcss-pxtorem": "4.0.1",
 		"postcss-responsive-type": "1.0.0",
-		"preact": "8.2.6",
 		"sass-loader": "6.0.6",
 		"script-ext-html-webpack-plugin": "1.8.8",
 		"style-loader": "0.19.0",

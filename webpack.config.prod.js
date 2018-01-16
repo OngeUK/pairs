@@ -46,13 +46,13 @@ module.exports = {
 		new StyleLintPlugin({
 			syntax: "scss",
 			failOnError: true
-		}),
-
-		new WorkboxPlugin({
-			globDirectory: DIST_DIR,
-			globPatterns: ["**/*.{html,js,css,svg,png}"],
-			swDest: path.join(DIST_DIR, "sw.js")
 		})
+
+		// new WorkboxPlugin({
+		// 	globDirectory: DIST_DIR,
+		// 	globPatterns: ["**/*.{html,js,css,svg,png}"],
+		// 	swDest: path.join(DIST_DIR, "sw.js")
+		// })
 	],
 
 	// Loaders
@@ -126,8 +126,8 @@ module.exports = {
 				]
 			},
 			{
-				// Favicon
-				test: /\.(ico)$/,
+				// Favicon & JSON
+				test: /\.(ico|json)$/,
 				use: [
 					{
 						loader: "file-loader",
