@@ -1,4 +1,5 @@
 import {h, Component} from "preact";
+import formatImageUrl from "../js/formatImageUrl";
 
 export default class Tile extends Component {
 	revealTile() {
@@ -12,7 +13,7 @@ export default class Tile extends Component {
 			tileInteraction(value, this.base);
 
 			// Use speech synthesis API to narrate tile label (if sound is enabled)
-			if (("speechSynthesis" in window) && sound) {
+			if ("speechSynthesis" in window && sound) {
 				// Create speech synthesis utterance object
 				const utterance = new SpeechSynthesisUtterance(value);
 
@@ -57,7 +58,13 @@ export default class Tile extends Component {
 			<div id={id} data-value={value} class={`grid__item${pulseCss}`} onClick={() => this.revealTile()}>
 				<div class="tile-wrapper" style={angle}>
 					<div class={`tile tile_back${backFlippedCss}`} style={{borderColor: `${colour}`}}>
-						<svg class="tile__logo" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><path d="M170 80h-70V10c0-5.5-4.5-10-10-10H10C4.5 0 0 4.5 0 10v80c0 5.5 4.5 10 10 10h70v70c0 5.5 4.5 10 10 10h80c5.5 0 10-4.5 10-10V90c0-5.5-4.5-10-10-10z" fill={colour} fill-opacity="0.1" /></svg>
+						<svg class="tile__logo" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M170 80h-70V10c0-5.5-4.5-10-10-10H10C4.5 0 0 4.5 0 10v80c0 5.5 4.5 10 10 10h70v70c0 5.5 4.5 10 10 10h80c5.5 0 10-4.5 10-10V90c0-5.5-4.5-10-10-10z"
+								fill={colour}
+								fill-opacity="0.1"
+							/>
+						</svg>
 					</div>
 					<div
 						class={`tile tile_front${frontFlippedCss}`}
@@ -69,8 +76,4 @@ export default class Tile extends Component {
 			</div>
 		);
 	}
-}
-
-function formatImageUrl(value) {
-	return value.replace(" ", "-").toLowerCase();
 }

@@ -3,13 +3,8 @@ import Grid from "./Grid";
 import ButtonSound from "./ButtonSound";
 import LevelComplete from "./LevelComplete";
 import Loader from "./Loader";
-import {animals} from "./../data/animals";
-
-const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
-const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
-const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
-
-// TO DO - split functions into their own files
+import newGame from "../js/newGame";
+import selectRandomEmoji from "../js/selectRandomEmoji";
 
 export default class App extends Component {
 	constructor() {
@@ -24,15 +19,14 @@ export default class App extends Component {
 	}
 
 	componentWillMount() {
-		//newGame(this);
 		this.setState({
-			loading: true
+			loading: true // Initiates pre-loader
 		});
 	}
 
 	componentDidMount() {
 		this.setState({
-			emoji: selectRandomEmoji()
+			emoji: selectRandomEmoji() // Emoji transcends games, so set this outside of the game's gridData state
 		});
 	}
 
@@ -69,8 +63,6 @@ export default class App extends Component {
 
 	// Flip tile
 	tileInteraction(value, element) {
-		// TO DO - click spamming bug fix
-
 		if (this.state.active) {
 			const {gridData} = this.state;
 
@@ -113,7 +105,12 @@ export default class App extends Component {
 						});
 					}, 1500);
 				} else {
-					// Player matched a pair - setTimeouts to allow for transitions/animations to fire first
+					// Player matched a pair
+					this.setState({
+						active: false // Disable tile clicks until matching pair animation fires
+					});
+
+					// setTimeouts to allow for transitions/animations to fire first
 					setTimeout(() => {
 						// Get IDs of the pair of tiles
 						const pairs = document.querySelectorAll(`div[data-value='${element.dataset.value}']`);
@@ -177,85 +174,4 @@ export default class App extends Component {
 
 		return <div>{output}</div>;
 	}
-}
-
-// Set up a new game (default of animals for now)
-function newGame(_this, game = "animals", size = 12) {
-	// Default app state
-	_this.setState({
-		active: false,
-		selectedGame: game,
-		gridSize: size,
-		currentTile: null,
-		completed: 0,
-		sound: true
-	});
-
-	// Get state data
-	const {gridSize, selectedGame} = _this.state;
-
-	// Load correct game grid data
-	let items;
-
-	switch (selectedGame) {
-		case "animals":
-			items = animals;
-			break;
-	}
-
-	// Get random data to form grid
-	items = sampleSize(items.data, gridSize / 2);
-
-	// Duplicate so we have a pair of each
-	let pairs = [...items, ...items];
-
-	// Randomise again
-	pairs = shuffle(pairs);
-
-	let gridData = [],
-		number = 0;
-
-	// Build full grid data
-	for (const pair of pairs) {
-		gridData.push({
-			value: pair,
-			flipped: true,
-			pulse: false,
-			colour: `#${(Math.random() * 0x666666 + 0x666666).toString(16).substring(0, 6)}`,
-			angle: number % 2 === 0 ? `transform: rotate(${random(-1.5, 0, true)}deg);` : `transform: rotate(${random(0, 1.5, true)}deg);` // Randomise angle tile item is displayed at
-		});
-		number++;
-	}
-
-	// Add to state
-	_this.setState({
-		gridData: gridData
-	});
-
-	// Have a short delay where you can see all the tiles flipped before playing
-	// (This is designed for pre-schoolers, so we don't want to make it too hard!)
-
-	// Hide tiles after a delay (depending on how many tiles are in the grid)
-	setTimeout(() => {
-		const initialGridData = _this.state.gridData;
-
-		const gridData = initialGridData.map((value) => {
-			value.flipped = false;
-			return value;
-		});
-
-		// Update state to start game
-		_this.setState({
-			active: true,
-			gridData: gridData
-		});
-	}, 200 * _this.state.gridSize);
-}
-
-// Select emoji at random
-function selectRandomEmoji() {
-	let emojis = ["😃", "😁", "😄", "😊", "🙂", "😋"];
-
-	emojis = shuffle(emojis);
-	return emojis[0];
 }
