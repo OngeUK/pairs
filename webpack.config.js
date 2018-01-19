@@ -12,12 +12,13 @@ module.exports = {
 
 	// webpack entry point
 	entry: {
-		app: "./index.js"
+		app: "./index.js",
+		three: ["./libs/three/CanvasRenderer.js", "./libs/three/Projector.js", "./libs/three/bespoke-particles.js"]
 	},
 
 	// webpack output
 	output: {
-		filename: "bundle-[hash].js",
+		filename: "scripts/[name]-[hash:5].js",
 		path: path.resolve(__dirname, "./dist")
 	},
 
@@ -45,7 +46,8 @@ module.exports = {
 
 		// Create HTML file
 		new HtmlWebpackPlugin({
-			template: "./index.html" //,
+			template: "./index.html",
+			inject: false //,
 			//favicon: "./../../assets/favicon.ico"
 		}),
 
@@ -66,7 +68,7 @@ module.exports = {
 				// ESLint
 				enforce: "pre",
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /libs/],
 				loader: "eslint-loader",
 				options: {
 					failOnError: false
@@ -75,7 +77,7 @@ module.exports = {
 			{
 				// JS, using Babel
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /libs/],
 				loader: "babel-loader"
 			},
 			{

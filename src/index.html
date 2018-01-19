@@ -9,10 +9,10 @@
 </head>
 
 <body>
-	<script src="http://www.onge.co.uk/pairs/three.min.js" defer></script>
-	<script src="http://www.onge.co.uk/pairs/Projector.js" defer></script>
-	<script src="http://www.onge.co.uk/pairs/CanvasRenderer.js" defer></script>
-	<script src="http://www.onge.co.uk/pairs/index.js?9" defer></script>
+	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
+	<script defer src="<%= htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+	<script defer src="<%= htmlWebpackPlugin.files.chunks['three'].entry %>"></script>
 </body>
 
 </html>

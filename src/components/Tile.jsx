@@ -1,5 +1,5 @@
 import {h, Component} from "preact";
-import formatImageUrl from "../js/formatImageUrl";
+import formatImageUrl from "./../js/formatImageUrl";
 
 export default class Tile extends Component {
 	revealTile() {

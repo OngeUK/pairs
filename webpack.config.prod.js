@@ -1,10 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const StyleLintPlugin = require("stylelint-webpack-plugin");
-const WorkboxPlugin = require("workbox-webpack-plugin");
+//const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const DIST_DIR = "./dist";
 
@@ -14,19 +15,22 @@ module.exports = {
 		extensions: [".jsx", ".js"]
 	},
 
-	// webpack entry point
+	// webpack entry points
 	entry: {
-		app: "./index.js"
+		app: "./index.js",
+		three: ["./libs/three/CanvasRenderer.js", "./libs/three/Projector.js", "./libs/three/bespoke-particles.js"]
 	},
 
 	// webpack output
 	output: {
-		filename: "bundle-[hash:5].js",
+		filename: "scripts/[name]-[hash:5].js",
 		path: path.resolve(__dirname, DIST_DIR)
 	},
 
 	// Plugin definitions
 	plugins: [
+		// Optimisation plugins
+		new UglifyJSPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 
 		// Extract CSS to its own file
@@ -34,12 +38,13 @@ module.exports = {
 
 		// Create HTML file
 		new HtmlWebpackPlugin({
-			template: "./index.html" //,
+			template: "./index.html",
+			inject: false //,
 			//favicon: "./../../assets/favicon.ico"
 		}),
 
 		new ScriptExtHtmlWebpackPlugin({
-			defaultAttribute: "async"
+			defaultAttribute: "defer"
 		}),
 
 		// Enable stylelint
@@ -62,7 +67,7 @@ module.exports = {
 				// ESLint
 				enforce: "pre",
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /libs/],
 				loader: "eslint-loader",
 				options: {
 					failOnError: true
@@ -71,7 +76,7 @@ module.exports = {
 			{
 				// JS, using Babel
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				exclude: [/node_modules/, /libs/],
 				loader: "babel-loader"
 			},
 			{
@@ -81,14 +86,6 @@ module.exports = {
 					fallback: "style-loader",
 					use: ["css-loader", "postcss-loader", "sass-loader"]
 				})
-			},
-			{
-				// HTML
-				test: /\.html$/,
-				loader: "html-loader",
-				options: {
-					minimize: true
-				}
 			},
 			{
 				// Fonts

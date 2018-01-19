@@ -3,8 +3,8 @@ import Grid from "./Grid";
 import ButtonSound from "./ButtonSound";
 import LevelComplete from "./LevelComplete";
 import Loader from "./Loader";
-import newGame from "../js/newGame";
-import selectRandomEmoji from "../js/selectRandomEmoji";
+import newGame from "./../js/newGame";
+import selectRandomEmoji from "./../js/selectRandomEmoji";
 
 export default class App extends Component {
 	constructor() {
