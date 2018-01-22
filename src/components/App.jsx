@@ -1,10 +1,12 @@
 import {h, Component} from "preact";
-import Grid from "./Grid";
-import ButtonSound from "./ButtonSound";
-import LevelComplete from "./LevelComplete";
 import Loader from "./Loader";
+import ButtonSound from "./ButtonSound";
 import newGame from "./../js/newGame";
+import Grid from "./Grid";
 import selectRandomEmoji from "./../js/selectRandomEmoji";
+import LevelComplete from "./LevelComplete";
+import Audio from "./Audio";
+import playAudio from "./../js/playAudio";
 
 export default class App extends Component {
 	constructor() {
@@ -64,10 +66,15 @@ export default class App extends Component {
 	// Flip tile
 	tileInteraction(value, element) {
 		if (this.state.active) {
-			const {gridData} = this.state;
+			const {gridData, sound} = this.state;
 
 			// Show selected tile
 			gridData[element.id].flipped = true;
+
+			// Play swoosh sound effect
+			if (sound) {
+				playAudio("swoosh");
+			}
 
 			// Update state with new values
 			this.setState({
@@ -97,6 +104,11 @@ export default class App extends Component {
 						gridData[this.state.currentTile.tile.id].flipped = false;
 						gridData[element.id].flipped = false;
 
+						// Play swoosh sound effect
+						if (sound) {
+							playAudio("swoosh");
+						}
+
 						// Player got it wrong - reset the state for the next go
 						this.setState({
 							active: true,
@@ -109,6 +121,11 @@ export default class App extends Component {
 					this.setState({
 						active: false // Disable tile clicks until matching pair animation fires
 					});
+
+					// Play tile matched sound effect
+					if (sound) {
+						playAudio("ding");
+					}
 
 					// setTimeouts to allow for transitions/animations to fire first
 					setTimeout(() => {
@@ -168,6 +185,7 @@ export default class App extends Component {
 						tilePulse={this.tilePulse}
 					/>
 					<LevelComplete stageOver={this.state.stageOver} startNewStage={this.startNewStage} emoji={this.state.emoji} />
+					<Audio />
 				</div>
 			);
 		}

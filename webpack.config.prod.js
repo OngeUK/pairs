@@ -99,6 +99,14 @@ module.exports = {
 				}
 			},
 			{
+				// Audio files
+				test: /\.wav$/,
+				loader: "file-loader",
+				options: {
+					name: "audio/[name].[ext]"
+				}
+			},
+			{
 				// Images
 				test: /\.(png|jpg|gif|svg)$/,
 				use: [

@@ -151,10 +151,19 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(woff|woff2)$/,
+				// Fonts
+				test: /\.(woff|woff2|)$/,
 				loader: "file-loader",
 				options: {
 					name: "fonts/[name].[ext]"
+				}
+			},
+			{
+				// Audo files
+				test: /\.wav$/,
+				loader: "file-loader",
+				options: {
+					name: "audio/[name].[ext]"
 				}
 			},
 			{
