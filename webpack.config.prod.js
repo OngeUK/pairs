@@ -30,8 +30,8 @@ module.exports = {
 	// Plugin definitions
 	plugins: [
 		// Optimisation plugins
-		new UglifyJSPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
+		new UglifyJSPlugin(),
 
 		// Extract CSS to its own file
 		new ExtractTextPlugin("styles-[contenthash:5].css"),
@@ -76,8 +76,11 @@ module.exports = {
 			{
 				// JS, using Babel
 				test: /\.(js|jsx)$/,
-				exclude: [/node_modules/, /libs/],
-				loader: "babel-loader"
+				exclude: [/node_modules/],
+				loader: "babel-loader",
+				options: {
+					presets: ["env"]
+				}
 			},
 			{
 				// CSS
