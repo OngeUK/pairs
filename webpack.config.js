@@ -46,8 +46,8 @@ module.exports = {
 
 		// Create HTML file
 		new HtmlWebpackPlugin({
-			template: "./index.html",
-			inject: false //,
+			template: "./index-dev.html" //,
+			//inject: false //,
 			//favicon: "./../../assets/favicon.ico"
 		}),
 
