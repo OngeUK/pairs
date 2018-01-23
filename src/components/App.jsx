@@ -150,6 +150,13 @@ export default class App extends Component {
 								stageOver: true
 							});
 
+							// Play cheer sound effect, after small delay
+							setTimeout(() => {
+								if (sound) {
+									playAudio("cheer");
+								}
+							}, 1000);
+
 							// Allow animations to fire before setting next game
 							setTimeout(() => {
 								// If player has yet to complete the largest grid, level up

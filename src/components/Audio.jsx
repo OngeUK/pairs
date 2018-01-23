@@ -10,6 +10,9 @@ export default class Audio extends Component {
 				<audio id="swoosh" preload="auto">
 					<source src={require("./../audio/swoosh.wav")} type="audio/wav" />
 				</audio>
+				<audio id="cheer" preload="auto">
+					<source src={require("./../audio/cheer.wav")} type="audio/wav" />
+				</audio>
 			</div>
 		);
 	}

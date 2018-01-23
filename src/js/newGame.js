@@ -1,4 +1,5 @@
 import {animals} from "./../data/animals";
+import playAudio from "./playAudio";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
@@ -17,7 +18,7 @@ export default function newGame(_this, game = "animals", size = 12) {
 	});
 
 	// Get state data
-	const {gridSize, selectedGame} = _this.state;
+	const {gridSize, selectedGame, sound} = _this.state;
 
 	// Load correct game grid data
 	let items;
@@ -70,6 +71,10 @@ export default function newGame(_this, game = "animals", size = 12) {
 			return value;
 		});
 
+		// Play swoosh sound effect
+		if (sound) {
+			playAudio("swoosh");
+		}
 		// Update state to start game
 		_this.setState({
 			active: true,
