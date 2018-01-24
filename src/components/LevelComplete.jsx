@@ -49,7 +49,9 @@ export default class LevelComplete extends Component {
 					<div class={`level-complete__sunbeams-bg${css.sunbeams}`} />
 				</div>
 				<div class={`level-complete__contents${css.contents}`}>
-					<span class="level-complete__contents-emoji">{emoji}</span>
+					<span class="level-complete__contents-emoji">
+						<img class="level-complete__contents-emoji-img" src={require(`./../images/emoji/${emoji}.svg`)} />
+					</span>
 				</div>
 			</div>
 		);

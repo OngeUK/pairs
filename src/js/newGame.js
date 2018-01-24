@@ -14,7 +14,7 @@ export default function newGame(_this, game = "animals", size = 12) {
 		gridSize: size,
 		currentTile: null,
 		completed: 0,
-		sound: true
+		sound: typeof _this.state.sound === "undefined" ? true : _this.state.sound // Keep continuation of sound status between games
 	});
 
 	// Get state data

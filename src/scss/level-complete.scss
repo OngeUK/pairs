@@ -67,10 +67,9 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 	&__contents {
 		align-items: center;
 		display: flex;
-		font-range: 25rem 130rem;
-		font-size: responsive 200px 500px;
 		height: 100%;
 		justify-content: center;
+		line-height: 0;
 		opacity: 1;
 		transform: scale(1);
 		transition: $transitionSpeed $easing;
@@ -83,8 +82,13 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		}
 
 		&-emoji {
-			color: #000;
-			margin-top: -6%;
+			text-align: center;
+			width: 100%;
+
+			&-img {
+				height: auto;
+				width: 30%;
+			}
 		}
 	}
 }
