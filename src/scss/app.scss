@@ -3,12 +3,13 @@
 ---------- */
 
 @import "./variables";
-@import "./grid";
-@import "./tile";
-@import "./fonts";
 @import "./buttons";
+@import "./fonts";
+@import "./grid";
 @import "./level-complete";
 @import "./loader";
+@import "./select-game";
+@import "./tile";
 
 html,
 body {

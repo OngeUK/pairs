@@ -2,10 +2,13 @@
 - Grid SCSS
 ---------- */
 
+@import "./animations";
+
 .container {
 	--grid-cols: 2;
 	--grid-padding: 1.5rem;
 	--max-grid-width: 100%;
+	animation: reveal 600ms cubic-bezier(0.55, 0.34, 0, 1.66);
 	margin: calc(var(--grid-padding) * 2) auto;
 	max-width: var(--max-grid-width);
 	width: 80vw;
@@ -41,20 +44,6 @@
 		&_pulse {
 			animation: 500ms pulse;
 			z-index: 1;
-		}
-	}
-
-	@keyframes pulse {
-		0% {
-			transform: scale(1);
-		}
-
-		50% {
-			transform: scale(1.25);
-		}
-
-		100% {
-			transform: scale(1);
 		}
 	}
 
@@ -97,7 +86,7 @@
 
 		@media ($bp-l) {
 			--grid-cols: 5;
-			--max-grid-width: 65%;
+			--max-grid-width: 63%;
 		}
 	}
 }

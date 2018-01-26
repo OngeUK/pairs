@@ -1,0 +1,51 @@
+/* ----------
+- Select game SCSS
+---------- */
+
+@import "./animations";
+
+.heading {
+	font-range: 25rem 75rem;
+	font-size: responsive 30px 55px;
+	margin: 0 0 1.5rem;
+	text-align: center;
+}
+
+.select-container {
+	animation: reveal 600ms cubic-bezier(0.55, 0.34, 0, 1.66);
+}
+
+.game {
+	&-container {
+		display: grid;
+		grid-gap: 1.5rem;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	&-select {
+		border-radius: 100%;
+		padding-top: 100%;
+		position: relative;
+		width: 100%;
+
+		&_animals {
+			background-image: url("./../images/horse.jpg");
+			background-size: 100%;
+		}
+
+		&_colours {
+			background-color: orange;
+
+			&::before {
+				background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 100%);
+				border-radius: 100%;
+				content: "";
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+		}
+	}
+}

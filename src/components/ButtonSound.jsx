@@ -6,7 +6,7 @@ export default class ToggleSound extends Component {
 		const btnCss = !on ? " btn-sound_disabled" : "";
 
 		return (
-			<button class={`btn-sound${btnCss}`} onClick={() => toggle()}>
+			<button class={`btn btn-sound${btnCss}`} onClick={() => toggle()}>
 				Toggle Sound
 			</button>
 		);

@@ -1,23 +1,27 @@
 import {h, Component} from "preact";
-import Loader from "./Loader";
-import ButtonSound from "./ButtonSound";
-import newGame from "./../js/newGame";
-import Grid from "./Grid";
-import selectRandomEmoji from "./../js/selectRandomEmoji";
-import LevelComplete from "./LevelComplete";
 import Audio from "./Audio";
+import ButtonSound from "./ButtonSound";
+import Grid from "./Grid";
+import HomeButton from "./ButtonHome";
+import LevelComplete from "./LevelComplete";
+import Loader from "./Loader";
+import newGame from "./../js/newGame";
 import playAudio from "./../js/playAudio";
+import SelectGame from "./SelectGame";
+import selectRandomEmoji from "./../js/selectRandomEmoji";
 
 export default class App extends Component {
 	constructor() {
 		super();
 
 		// Bind custom methods
+		this.contentLoaded = this.contentLoaded.bind(this);
+		this.homeToggle = this.homeToggle.bind(this);
 		this.tileInteraction = this.tileInteraction.bind(this);
 		this.tilePulse = this.tilePulse.bind(this);
+		this.setGame = this.setGame.bind(this);
 		this.soundToggle = this.soundToggle.bind(this);
 		this.startNewStage = this.startNewStage.bind(this);
-		this.contentLoaded = this.contentLoaded.bind(this);
 	}
 
 	componentWillMount() {
@@ -47,6 +51,18 @@ export default class App extends Component {
 		});
 	}
 
+	// Toggle to home
+	homeToggle() {
+		this.setState({
+			selectedGame: null
+		});
+
+		// Play pop sound effect
+		if (this.state.sound) {
+			playAudio("pop");
+		}
+	}
+
 	// Pulsate matching tiles
 	tilePulse(tileId, type = "add") {
 		const {gridData} = this.state,
@@ -63,10 +79,18 @@ export default class App extends Component {
 		});
 	}
 
+	// Set selected game
+	setGame(game) {
+		this.setState({
+			selectedGame: game
+		});
+		newGame(this, game);
+	}
+
 	// Flip tile
 	tileInteraction(value, element) {
 		if (this.state.active) {
-			const {gridData, sound} = this.state;
+			const {gridData, gridSize, sound, currentTile, completed, selectedGame} = this.state;
 
 			// Show selected tile
 			gridData[element.id].flipped = true;
@@ -82,7 +106,7 @@ export default class App extends Component {
 			});
 
 			// If first tile selected
-			if (this.state.currentTile === null) {
+			if (currentTile === null) {
 				// Set the id of the item we're trying to match
 				this.setState({
 					currentTile: {
@@ -90,9 +114,9 @@ export default class App extends Component {
 						value: value
 					}
 				});
-			} else if (this.state.currentTile.tile !== element) {
+			} else if (currentTile.tile !== element) {
 				// If the two selected tiles do not match
-				if (element.dataset.value.toString() !== this.state.currentTile.value.toString()) {
+				if (element.dataset.value.toString() !== currentTile.value.toString()) {
 					// Disable tile clicks until incorrect pairings have reset
 					this.setState({
 						active: false
@@ -101,7 +125,7 @@ export default class App extends Component {
 					// Flip tiles back after a short delay
 					setTimeout(() => {
 						// Hide tiles
-						gridData[this.state.currentTile.tile.id].flipped = false;
+						gridData[currentTile.tile.id].flipped = false;
 						gridData[element.id].flipped = false;
 
 						// Play swoosh sound effect
@@ -141,11 +165,11 @@ export default class App extends Component {
 						this.setState({
 							active: true,
 							currentTile: null,
-							completed: this.state.completed + 2
+							completed: completed + 2
 						});
 
 						// Has the player matched all the pairs?
-						if (this.state.gridSize === this.state.completed) {
+						if (gridSize === this.state.completed) {
 							this.setState({
 								stageOver: true
 							});
@@ -160,11 +184,13 @@ export default class App extends Component {
 							// Allow animations to fire before setting next game
 							setTimeout(() => {
 								// If player has yet to complete the largest grid, level up
-								if (this.state.gridSize !== 20) {
-									newGame(this, this.state.selectedGame, this.state.gridSize + 4);
+								if (gridSize !== 20) {
+									newGame(this, selectedGame, gridSize + 4);
 								} else {
 									// Game over - return to home screen
-									newGame(this, this.state.selectedGame);
+									this.setState({
+										selectedGame: null
+									});
 								}
 							}, 4000);
 						}
@@ -182,15 +208,21 @@ export default class App extends Component {
 		} else {
 			output = (
 				<div>
+					<HomeButton selectedGame={this.state.selectedGame} toggle={this.homeToggle} />
 					<ButtonSound on={this.state.sound} toggle={this.soundToggle} />
-					<Grid
-						active={this.state.active}
-						sound={this.state.sound}
-						gridSize={this.state.gridSize}
-						gridData={this.state.gridData}
-						tileInteraction={this.tileInteraction}
-						tilePulse={this.tilePulse}
-					/>
+					{this.state.selectedGame === null ? (
+						<SelectGame setGame={this.setGame} />
+					) : (
+						<Grid
+							active={this.state.active}
+							sound={this.state.sound}
+							gridSize={this.state.gridSize}
+							gridData={this.state.gridData}
+							selectedGame={this.state.selectedGame}
+							tileInteraction={this.tileInteraction}
+							tilePulse={this.tilePulse}
+						/>
+					)}
 					<LevelComplete stageOver={this.state.stageOver} startNewStage={this.startNewStage} emoji={this.state.emoji} />
 					<Audio />
 				</div>

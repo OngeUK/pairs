@@ -116,7 +116,6 @@
 		"no-empty-source": true,
 		"no-eol-whitespace": true,
 		"no-extra-semicolons": true,
-		"no-unknown-animations": true,
 		"order/order": ["custom-properties", "declarations"],
 		"order/properties-alphabetical-order": true
 	}

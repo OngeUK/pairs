@@ -72,6 +72,23 @@
 		}
 	}
 
+	&_colour {
+		&::before {
+			background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 100%);
+			content: "";
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		// White tiles need a darker gradient
+		&[data-value="white"]::before {
+			background: radial-gradient(ellipse farthest-corner at left top, transparent 0%, #fafafa 100%);
+		}
+	}
+
 	&__logo {
 		height: 30%;
 		left: 35%;

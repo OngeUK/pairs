@@ -1,3 +1,3 @@
 export const colours = {
-	data: ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "grey", "white"]
+	data: ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Brown", "Grey", "White"]
 };

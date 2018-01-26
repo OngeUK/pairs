@@ -179,6 +179,14 @@
 			}
 		],
 		"semi": [2, "always"], // Require or disallow semicolons instead of ASI
+		"sort-imports": [
+			// Enforce sorted import declarations within modules
+			2,
+			{
+				"ignoreCase": true,
+				"ignoreMemberSort": true
+			}
+		],
 		"space-before-blocks": [2, "always"], // Enforce consistent spacing before blocks
 		"space-before-function-paren": [2, "never"], // Enforce consistent spacing before function definition opening parenthesis
 		"space-in-parens": [2, "never"], // Enforce consistent spacing inside parentheses

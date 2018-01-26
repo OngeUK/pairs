@@ -13,6 +13,9 @@ export default class Audio extends Component {
 				<audio id="cheer" preload="auto">
 					<source src={require("./../audio/cheer.wav")} type="audio/wav" />
 				</audio>
+				<audio id="pop" preload="auto">
+					<source src={require("./../audio/pop.wav")} type="audio/wav" />
+				</audio>
 			</div>
 		);
 	}

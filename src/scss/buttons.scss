@@ -3,12 +3,21 @@
 ---------- */
 
 .btn {
+	appearance: none;
+	background-color: transparent;
+	border: 0;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
 	&-sound {
-		appearance: none;
-		background-color: transparent;
 		background-image: url("../images/icons/icon-speaker.svg");
 		background-size: 100% auto;
-		border: 0;
 		height: 1.75rem;
 		position: absolute;
 		right: 0.5rem;
@@ -16,14 +25,6 @@
 		top: 0.5rem;
 		width: 1.75rem;
 		z-index: 3;
-
-		&:hover {
-			cursor: pointer;
-		}
-
-		&:focus {
-			outline: 0;
-		}
 
 		&_disabled {
 			opacity: 0.3;
@@ -39,5 +40,31 @@
 				width: 120%;
 			}
 		}
+	}
+
+	&-home {
+		background-image: url("../images/icons/icon-home.svg");
+		background-size: 100% auto;
+		height: 1.75rem;
+		left: 0.5rem;
+		position: absolute;
+		text-indent: -999rem;
+		top: 0.5rem;
+		transform: translate3d(0, 0, 0);
+		transition: all 350ms;
+		width: 1.75rem;
+		z-index: 3;
+
+		&_disabled {
+			transform: translate3d(0, -150%, 0);
+		}
+	}
+
+	&-game {
+		color: #fff;
+		font-family: "Gloria Hallelujah";
+		font-range: 25rem 75rem;
+		font-size: responsive 15px 30px;
+		text-shadow: 1px 1px 1px #000;
 	}
 }

@@ -1,5 +1,5 @@
 import {h, Component} from "preact";
-import formatImageUrl from "./../js/formatImageUrl";
+import TileData from "./TileData";
 
 export default class Tile extends Component {
 	revealTile() {
@@ -33,7 +33,7 @@ export default class Tile extends Component {
 	}
 
 	render() {
-		const {id, value, colour, angle, flipped, pulse, tilePulse} = this.props;
+		const {id, value, colour, angle, flipped, pulse, tilePulse, selectedGame} = this.props;
 		let backFlippedCss = "",
 			frontFlippedCss = "",
 			pulseCss = "";
@@ -66,12 +66,7 @@ export default class Tile extends Component {
 							/>
 						</svg>
 					</div>
-					<div
-						class={`tile tile_front${frontFlippedCss}`}
-						style={{borderColor: `${colour}`, backgroundImage: `url("${require(`./../images/${formatImageUrl(value)}.jpg`)}")`}}
-					>
-						<div class="tile__content">{value}</div>
-					</div>
+					<TileData selectedGame={selectedGame} cssClass={frontFlippedCss} colour={colour} value={value} />
 				</div>
 			</div>
 		);

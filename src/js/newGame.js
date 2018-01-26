@@ -1,12 +1,13 @@
 import {animals} from "./../data/animals";
+import {colours} from "./../data/colours";
 import playAudio from "./playAudio";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
 const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
-// Set up a new game (hard-coded default of animals for now)
-export default function newGame(_this, game = "animals", size = 12) {
+// Set up a new game (hard-coded default of colours for now)
+export default function newGame(_this, game = null, size = 12) {
 	// Default app state
 	_this.setState({
 		active: false,
@@ -27,6 +28,9 @@ export default function newGame(_this, game = "animals", size = 12) {
 	switch (selectedGame) {
 		case "animals":
 			items = animals;
+			break;
+		case "colours":
+			items = colours;
 			break;
 	}
 
@@ -59,6 +63,11 @@ export default function newGame(_this, game = "animals", size = 12) {
 		gridData: gridData
 	});
 
+	// Play pop sound effect
+	if (sound) {
+		playAudio("pop");
+	}
+
 	// Have a short delay where you can see all the tiles flipped before playing
 	// (This is designed for pre-schoolers, so we don't want to make it too hard!)
 
@@ -71,14 +80,17 @@ export default function newGame(_this, game = "animals", size = 12) {
 			return value;
 		});
 
-		// Play swoosh sound effect
-		if (sound) {
-			playAudio("swoosh");
+		// Fire only if user hasn't immediately returned to the home screen
+		if (_this.state.selectedGame !== null) {
+			// Play swoosh sound effect
+			if (sound) {
+				playAudio("swoosh");
+			}
+			// Update state to start game
+			_this.setState({
+				active: true,
+				gridData: gridData
+			});
 		}
-		// Update state to start game
-		_this.setState({
-			active: true,
-			gridData: gridData
-		});
-	}, 200 * _this.state.gridSize);
+	}, 225 * _this.state.gridSize);
 }

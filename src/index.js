@@ -1,7 +1,5 @@
-import {h, render} from "preact";
-
-// Import SASS files
 import "./scss/app.scss";
+import {h, render} from "preact";
 
 // Import assets so these get bundled by Webpack
 // import "./../../assets/icon-logo.png";
