@@ -74,7 +74,7 @@
 
 	&_colour {
 		&::before {
-			background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 100%);
+			background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 50%);
 			content: "";
 			height: 100%;
 			left: 0;
@@ -85,7 +85,7 @@
 
 		// White tiles need a darker gradient
 		&[data-value="white"]::before {
-			background: radial-gradient(ellipse farthest-corner at left top, transparent 0%, #fafafa 100%);
+			background: radial-gradient(ellipse farthest-corner at left top, transparent 0%, #fafafa 50%);
 		}
 	}
 

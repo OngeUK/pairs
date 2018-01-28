@@ -84,7 +84,7 @@ export default function newGame(_this, game = null, size = 12) {
 		if (_this.state.selectedGame !== null) {
 			// Play swoosh sound effect
 			if (sound) {
-				playAudio("swoosh");
+				playAudio("swooshes");
 			}
 			// Update state to start game
 			_this.setState({
