@@ -130,7 +130,7 @@ export default class App extends Component {
 
 						// Play swoosh sound effect
 						if (sound) {
-							playAudio("swoosh");
+							playAudio("swooshes");
 						}
 
 						// Player got it wrong - reset the state for the next go

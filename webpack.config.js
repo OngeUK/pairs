@@ -160,7 +160,7 @@ module.exports = {
 			},
 			{
 				// Audo files
-				test: /\.wav$/,
+				test: /\.mp3$/,
 				loader: "file-loader",
 				options: {
 					name: "audio/[name].[ext]"
