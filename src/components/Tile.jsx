@@ -20,11 +20,14 @@ export default class Tile extends Component {
 				// Configure utterance
 				utterance.lang = "en-GB";
 				utterance.volume = 1;
-				utterance.rate = 1;
+				utterance.rate = 1.5;
 				utterance.pitch = 1;
 
 				// Stop any current utterances
-				window.speechSynthesis.cancel();
+				// - When selecting tiles quickly, this causes major animation jank in Chrome, plus doesn't say the second tile label
+				// - For that reason, commenting this out, although this can now result in long gaps between spoken terms
+				// - Hope to add it back should Chrome improve this
+				//window.speechSynthesis.cancel();
 
 				// Narrate utterance
 				window.speechSynthesis.speak(utterance);
