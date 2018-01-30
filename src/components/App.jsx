@@ -9,6 +9,7 @@ import newGame from "./../js/newGame";
 import playAudio from "./../js/playAudio";
 import SelectGame from "./SelectGame";
 import selectRandomEmoji from "./../js/selectRandomEmoji";
+import speech from "../data/speech";
 
 export default class App extends Component {
 	constructor() {
@@ -84,7 +85,14 @@ export default class App extends Component {
 		this.setState({
 			selectedGame: game
 		});
+
+		// Start new game
 		newGame(this, game);
+
+		// Use speech synthesis API to narrate game title (if sound is enabled)
+		if (this.state.sound) {
+			speech(game);
+		}
 	}
 
 	// Flip tile

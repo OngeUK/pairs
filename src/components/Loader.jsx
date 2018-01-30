@@ -49,6 +49,7 @@ export default class Loader extends Component {
 
 				// Problem loading image
 				img.onerror = (err) => {
+					console.log(err);
 					reject(err);
 				};
 
@@ -90,9 +91,9 @@ export default class Loader extends Component {
 		return (
 			<div>
 				{error ? (
-					<p>Error loading game. Please try again.</p>
+					<p class="loader-error">Error loading game. Please try again.</p>
 				) : (
-					<div class="loader">
+					<div class="loader loader-wrapper">
 						<div class="loader loader_progress" style={{width: `${percentage}%`}}>
 							{mask}
 						</div>

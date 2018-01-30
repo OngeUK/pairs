@@ -3,16 +3,18 @@ import formatImageUrl from "./../js/formatImageUrl";
 
 export default class TileData extends Component {
 	render() {
-		const {selectedGame, cssClass, colour, value} = this.props;
+		const {selectedGame, cssClass, colour, value} = this.props,
+			imageExt = (selectedGame === "animals") ? "jpg" : "svg";
 		let output;
 
 		// Different games require different structures
 		switch (selectedGame) {
 			case "animals":
+			case "shapes":
 				output = (
 					<div
 						class={`tile tile_front${cssClass}`}
-						style={{borderColor: `${colour}`, backgroundImage: `url("${require(`./../images/${formatImageUrl(value)}.jpg`)}")`}}
+						style={{borderColor: `${colour}`, backgroundImage: `url("${require(`./../images/${selectedGame}/${formatImageUrl(value)}.${imageExt}`)}")`}}
 					>
 						<div class="tile__content">{value}</div>
 					</div>

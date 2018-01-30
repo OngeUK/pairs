@@ -1,4 +1,5 @@
 import {h, Component} from "preact";
+import speech from "./../data/speech";
 import TileData from "./TileData";
 
 export default class Tile extends Component {
@@ -13,24 +14,8 @@ export default class Tile extends Component {
 			tileInteraction(value, this.base);
 
 			// Use speech synthesis API to narrate tile label (if sound is enabled)
-			if ("speechSynthesis" in window && sound) {
-				// Create speech synthesis utterance object
-				const utterance = new SpeechSynthesisUtterance(value);
-
-				// Configure utterance
-				utterance.lang = "en-GB";
-				utterance.volume = 1;
-				utterance.rate = 1.5;
-				utterance.pitch = 1;
-
-				// Stop any current utterances
-				// - When selecting tiles quickly, this causes major animation jank in Chrome, plus doesn't say the second tile label
-				// - For that reason, commenting this out, although this can now result in long gaps between spoken terms
-				// - Hope to add it back should Chrome improve this
-				//window.speechSynthesis.cancel();
-
-				// Narrate utterance
-				window.speechSynthesis.speak(utterance);
+			if (sound) {
+				speech(value);
 			}
 		}
 	}

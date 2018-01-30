@@ -9,8 +9,16 @@
 	transition: 150ms linear;
 	width: 180px;
 
+	&-wrapper {
+		margin: auto;
+	}
+
+	&-error {
+		text-align: center;
+	}
+
 	&_progress {
-		background: #f9e9d6;
+		background: #bbb;
 		width: 0;
 	}
 }

@@ -1,6 +1,7 @@
 import {animals} from "./../data/animals";
 import {colours} from "./../data/colours";
 import playAudio from "./playAudio";
+import {shapes} from "./../data/shapes";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
@@ -31,6 +32,9 @@ export default function newGame(_this, game = null, size = 12) {
 			break;
 		case "colours":
 			items = colours;
+			break;
+		case "shapes":
+			items = shapes;
 			break;
 	}
 
@@ -68,9 +72,11 @@ export default function newGame(_this, game = null, size = 12) {
 		playAudio("pop");
 	}
 
+	// Scroll to top of page (for mobile users)
+	window.scrollTo(0, 0);
+
 	// Have a short delay where you can see all the tiles flipped before playing
 	// (This is designed for pre-schoolers, so we don't want to make it too hard!)
-
 	// Hide tiles after a delay (depending on how many tiles are in the grid)
 	setTimeout(() => {
 		const initialGridData = _this.state.gridData;

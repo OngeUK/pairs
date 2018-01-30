@@ -13,13 +13,23 @@
 
 .select-container {
 	animation: reveal 600ms cubic-bezier(0.55, 0.34, 0, 1.66);
+	margin: auto;
+	width: 90%;
 }
 
 .game {
 	&-container {
+		--grid-cols: 2;
 		display: grid;
 		grid-gap: 1.5rem;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(var(--grid-cols), 1fr);
+		margin: auto;
+		max-width: 600px;
+		width: 75%;
+
+		@media ($bp-s) {
+			--grid-cols: 3;
+		}
 	}
 
 	&-select {
@@ -29,7 +39,7 @@
 		width: 100%;
 
 		&_animals {
-			background-image: url("./../images/horse.jpg");
+			background-image: url("./../images/animals/horse.jpg");
 			background-size: 100%;
 		}
 
@@ -46,6 +56,12 @@
 				top: 0;
 				width: 100%;
 			}
+		}
+
+		&_shapes {
+			background-color: #edc7a6;
+			background-image: url("./../images/shapes/star-home.svg");
+			background-size: 100%;
 		}
 	}
 }

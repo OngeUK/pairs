@@ -3,7 +3,7 @@ import {h, Component} from "preact";
 export default class SelectGame extends Component {
 	render() {
 		const {setGame} = this.props,
-			games = ["Animals", "Colours"];
+			games = ["Animals", "Colours", "Shapes"];
 
 		return (
 			<div class="select-container">

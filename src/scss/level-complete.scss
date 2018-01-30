@@ -10,7 +10,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 	height: 100%;
 	left: 0;
 	overflow: hidden;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	width: 100%;
 
@@ -24,7 +24,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		left: 0;
 		opacity: 0.85;
 		overflow: hidden;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		transition: opacity $transitionSpeed linear;
 		width: 100%;
@@ -41,7 +41,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		height: 100%;
 		justify-content: center;
 		overflow: hidden;
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		z-index: 2;
 

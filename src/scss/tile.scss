@@ -11,9 +11,11 @@
 	box-sizing: border-box;
 	outline: 1px solid transparent; // Fixes anti-aliasing in Firefox
 	overflow: hidden;
-	padding-top: 100%;
+	padding-top: calc(100% - 0.4rem);
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 	transform-style: preserve-3d;
 	transition: 400ms;
+	user-select: none;
 	width: 100%;
 
 	&-wrapper {
@@ -27,7 +29,7 @@
 		font-family: "Gloria Hallelujah";
 		font-range: 25rem 45rem;
 		font-size: responsive 18px 40px;
-		line-height: 2.25;
+		line-height: 2.5;
 		position: absolute;
 		text-align: center;
 		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -61,7 +63,7 @@
 	}
 
 	&_front {
-		background-size: cover;
+		background-size: 101%; // Make slightly larger to fix scaling issue in Chrome
 		position: absolute;
 		top: 0;
 		transform: rotateY(180deg);
