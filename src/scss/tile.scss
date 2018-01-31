@@ -51,6 +51,50 @@
 		}
 	}
 
+	// Font sizing uses postcss-responsive-type
+	&__number {
+		align-items: center;
+		color: #fff;
+		display: flex;
+		font-family: "Gloria Hallelujah";
+		font-range: 25rem 45rem;
+		font-size: responsive 60px 170px;
+		height: 100%;
+		justify-content: center;
+		left: 0;
+		position: absolute;
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+		top: 0;
+		width: 100%;
+
+		@media ($bp-s) {
+			font-range: 45rem 75rem;
+			font-size: responsive 60px 130px;
+
+			.grid-20 & {
+				font-size: responsive 50px 120px;
+			}
+		}
+
+		@media ($bp-m) {
+			font-range: 75rem 120rem;
+			font-size: responsive 60px 120px;
+
+			.grid-20 & {
+				font-size: responsive 60px 120px;
+			}
+		}
+
+		@media ($bp-l) {
+			font-range: 120rem 130rem;
+			font-size: responsive 100px 160px;
+
+			.grid-20 & {
+				font-size: responsive 60px 120px;
+			}
+		}
+	}
+
 	&_back {
 		cursor: pointer;
 		position: relative;
@@ -76,18 +120,14 @@
 
 	&_colour {
 		&::before {
-			background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 50%);
+			background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 66%);
 			content: "";
 			height: 100%;
 			left: 0;
+			opacity: 0.75;
 			position: absolute;
 			top: 0;
 			width: 100%;
-		}
-
-		// White tiles need a darker gradient
-		&[data-value="white"]::before {
-			background: radial-gradient(ellipse farthest-corner at left top, transparent 0%, #fafafa 50%);
 		}
 	}
 

@@ -9,7 +9,7 @@ import newGame from "./../js/newGame";
 import playAudio from "./../js/playAudio";
 import SelectGame from "./SelectGame";
 import selectRandomEmoji from "./../js/selectRandomEmoji";
-import speech from "../data/speech";
+import speech from "./../js/speech";
 
 export default class App extends Component {
 	constructor() {

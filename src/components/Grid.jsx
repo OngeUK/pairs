@@ -12,7 +12,7 @@ export default class Grid extends Component {
 						return (
 							<Tile
 								id={i}
-								value={item.value}
+								data={item.data}
 								colour={item.colour}
 								angle={item.angle}
 								flipped={item.flipped}

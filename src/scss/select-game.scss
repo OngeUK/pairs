@@ -28,7 +28,7 @@
 		width: 75%;
 
 		@media ($bp-s) {
-			--grid-cols: 3;
+			--grid-cols: 4;
 		}
 	}
 
@@ -44,7 +44,7 @@
 		}
 
 		&_colours {
-			background-color: orange;
+			background-color: #ffa025;
 
 			&::before {
 				background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 100%);
@@ -52,15 +52,21 @@
 				content: "";
 				height: 100%;
 				left: 0;
+				opacity: 0.75;
 				position: absolute;
 				top: 0;
 				width: 100%;
 			}
 		}
 
+		&_numbers {
+			background-image: url("./../images/select/numbers.png");
+			background-size: 100%;
+		}
+
 		&_shapes {
 			background-color: #edc7a6;
-			background-image: url("./../images/shapes/star-home.svg");
+			background-image: url("./../images/select/star.svg");
 			background-size: 100%;
 		}
 	}

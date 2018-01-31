@@ -1,5 +1,6 @@
 import {animals} from "./../data/animals";
 import {colours} from "./../data/colours";
+import {numbers} from "./../data/numbers";
 import playAudio from "./playAudio";
 import {shapes} from "./../data/shapes";
 
@@ -33,6 +34,9 @@ export default function newGame(_this, game = null, size = 12) {
 		case "colours":
 			items = colours;
 			break;
+		case "numbers":
+			items = numbers;
+			break;
 		case "shapes":
 			items = shapes;
 			break;
@@ -53,7 +57,7 @@ export default function newGame(_this, game = null, size = 12) {
 	// Build full grid data
 	for (const pair of pairs) {
 		gridData.push({
-			value: pair,
+			data: pair,
 			flipped: true,
 			pulse: false,
 			colour: `#${(Math.random() * 0x666666 + 0x666666).toString(16).substring(0, 6)}`,

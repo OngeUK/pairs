@@ -49,7 +49,6 @@ export default class Loader extends Component {
 
 				// Problem loading image
 				img.onerror = (err) => {
-					console.log(err);
 					reject(err);
 				};
 

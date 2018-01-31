@@ -1,5 +1,5 @@
 import {h, Component} from "preact";
-import speech from "./../data/speech";
+import speech from "./../js/speech";
 import TileData from "./TileData";
 
 export default class Tile extends Component {
@@ -21,7 +21,7 @@ export default class Tile extends Component {
 	}
 
 	render() {
-		const {id, value, colour, angle, flipped, pulse, tilePulse, selectedGame} = this.props;
+		const {id, data, colour, angle, flipped, pulse, tilePulse, selectedGame} = this.props;
 		let backFlippedCss = "",
 			frontFlippedCss = "",
 			pulseCss = "";
@@ -43,7 +43,7 @@ export default class Tile extends Component {
 		}
 
 		return (
-			<div id={id} data-value={value} class={`grid__item${pulseCss}`} onClick={() => this.revealTile()}>
+			<div id={id} data-value={data.val} class={`grid__item${pulseCss}`} onClick={() => this.revealTile()}>
 				<div class="tile-wrapper" style={angle}>
 					<div class={`tile tile_back${backFlippedCss}`} style={{borderColor: `${colour}`}}>
 						<svg class="tile__logo" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@ export default class Tile extends Component {
 							/>
 						</svg>
 					</div>
-					<TileData selectedGame={selectedGame} cssClass={frontFlippedCss} colour={colour} value={value} />
+					<TileData selectedGame={selectedGame} cssClass={frontFlippedCss} colour={colour} data={data} />
 				</div>
 			</div>
 		);

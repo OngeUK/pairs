@@ -14,11 +14,11 @@
 	width: 80vw;
 
 	@media ($bp-s) {
-		--max-grid-width: 95%;
+		--max-grid-width: 70%;
+		margin: var(--grid-padding) auto;
 	}
 
 	@media ($bp-m) {
-		--grid-padding: 2rem;
 		--max-grid-width: 90%;
 	}
 
@@ -64,29 +64,30 @@
 		}
 
 		@media ($bp-m) {
-			--grid-cols: 4;
-			--max-grid-width: 60%;
+			--grid-cols: 8;
+			--max-grid-width: 95%;
 		}
 
 		@media ($bp-l) {
 			--grid-cols: 8;
-			--max-grid-width: 95%;
+			--max-grid-width: 110rem;
 		}
 	}
 
 	&-20 {
 		@media ($bp-s) {
 			--grid-cols: 5;
+			--max-grid-width: 80%;
 		}
 
 		@media ($bp-m) {
 			--grid-cols: 5;
-			--max-grid-width: 80%;
+			--max-grid-width: 60rem;
 		}
 
 		@media ($bp-l) {
 			--grid-cols: 5;
-			--max-grid-width: 63%;
+			--max-grid-width: 60rem;
 		}
 	}
 }
