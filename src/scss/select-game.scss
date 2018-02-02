@@ -47,7 +47,7 @@
 			background-color: #ffa025;
 
 			&::before {
-				background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, transparent 100%);
+				background: radial-gradient(ellipse farthest-corner at left top, #fff 0%, rgba(255, 255, 255, 0) 100%);
 				border-radius: 100%;
 				content: "";
 				height: 100%;

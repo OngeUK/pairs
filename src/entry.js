@@ -24,9 +24,10 @@ function init() {
 	root = render(<App />, document.body, root);
 }
 
+require("preact/devtools"); // Enable React DevTools in Preact
+
 // in development, set up HMR:
 if (module.hot) {
-	require("preact/devtools"); // Enable React DevTools in Preact
 	module.hot.accept("./components/app", () => requestAnimationFrame(init));
 }
 

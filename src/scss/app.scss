@@ -11,6 +11,10 @@
 @import "./select-game";
 @import "./tile";
 
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 html,
 body {
 	align-items: center;
