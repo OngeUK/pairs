@@ -5,7 +5,6 @@ const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const StyleLintPlugin = require("stylelint-webpack-plugin");
-//const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const DIST_DIR = "./dist";
 
@@ -17,7 +16,7 @@ module.exports = {
 
 	// webpack entry points
 	entry: {
-		app: "./index.js",
+		app: "./entry.js",
 		three: ["./libs/three/CanvasRenderer.js", "./libs/three/Projector.js", "./libs/three/bespoke-particles.js"]
 	},
 
@@ -52,12 +51,6 @@ module.exports = {
 			syntax: "scss",
 			failOnError: true
 		})
-
-		// new WorkboxPlugin({
-		// 	globDirectory: DIST_DIR,
-		// 	globPatterns: ["**/*.{html,js,css,svg,png}"],
-		// 	swDest: path.join(DIST_DIR, "sw.js")
-		// })
 	],
 
 	// Loaders
@@ -67,7 +60,7 @@ module.exports = {
 				// ESLint
 				enforce: "pre",
 				test: /\.(js|jsx)$/,
-				exclude: [/node_modules/, /libs/],
+				exclude: [/node_modules/, /libs/, /sw.js/, /libs\/workbox/],
 				loader: "eslint-loader",
 				options: {
 					failOnError: true
@@ -76,7 +69,7 @@ module.exports = {
 			{
 				// JS, using Babel
 				test: /\.(js|jsx)$/,
-				exclude: [/node_modules/],
+				exclude: [/node_modules/, /sw.js/, /libs\/workbox/],
 				loader: "babel-loader",
 				options: {
 					presets: ["env"]
@@ -134,8 +127,8 @@ module.exports = {
 				]
 			},
 			{
-				// Favicon & JSON
-				test: /\.(ico|json)$/,
+				// Favicon & Service worker files
+				test: [/\.ico$/, /sw.js/, /workbox-sw.prod.v2.1.2.js/, /manifest.json/],
 				use: [
 					{
 						loader: "file-loader",

@@ -12,7 +12,7 @@ module.exports = {
 
 	// webpack entry point
 	entry: {
-		app: "./index.js",
+		app: "./entry.js",
 		three: ["./libs/three/CanvasRenderer.js", "./libs/three/Projector.js", "./libs/three/bespoke-particles.js"]
 	},
 

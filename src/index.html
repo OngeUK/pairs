@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta charset="UTF-8">
+		<title>Pairs</title>
+		<link rel="manifest" href="manifest.json">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+		<meta name="description" content="Picture matching educational game for children">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="application-name" content="Pairs">
+		<meta name="apple-mobile-web-app-title" content="Pairs">
+		<meta name="theme-color" content="#fcf9e7">
+		<meta name="msapplication-navbutton-color" content="#fcf9e7">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="msapplication-starturl" content="/pairs/">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" sizes="512x512" href="images/icons/app.png">
+		<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="images/icons/app.png">
+		<meta property="og:site_name" content="Pairs" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_GB" />
+		<meta property="og:title" content="Pairs" />
+		<meta property="og:image" content="https://pairs.onge.co.uk/images/banner.png" />
+		<meta property="og:url" content="https://pairs.onge.co.uk/" />
+		<meta property="og:description" content="Picture matching educational game for children" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://pairs.onge.co.uk/" />
+		<meta name="twitter:title" content="Pairs" />
+		<meta name="twitter:description" content="Picture matching educational game for children" />
+		<meta name="twitter:image:src" content="https://pairs.onge.co.uk/images/banner.png" />
+	</head>
 
-<head>
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pairs</title>
-</head>
-
-<body>
-	<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
-	<script defer src="<%= htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
-	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
-	<script defer src="<%= htmlWebpackPlugin.files.chunks['three'].entry %>"></script>
-</body>
-
+	<body>
+		<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
+		<script defer src="<%= htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+		<script defer src="<%= htmlWebpackPlugin.files.chunks['three'].entry %>"></script>
+	</body>
 </html>

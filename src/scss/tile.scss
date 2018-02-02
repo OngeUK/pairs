@@ -12,7 +12,7 @@
 	outline: 1px solid transparent; // Fixes anti-aliasing in Firefox
 	overflow: hidden;
 	padding-top: calc(100% - 0.4rem);
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	transform-style: preserve-3d;
 	transition: 400ms;
 	user-select: none;

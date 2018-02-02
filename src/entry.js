@@ -1,3 +1,4 @@
+/* eslint-disable sort-imports */
 import "./scss/app.scss";
 import {h, render} from "preact";
 
@@ -5,10 +6,19 @@ import {h, render} from "preact";
 // import "./../../assets/icon-logo.png";
 // import "./../../assets/banner-logo.png";
 // import "./manifest.json";
+// import "./sw.js";
+// import "./libs/workbox/workbox-sw.prod.v2.1.2.js";
 
-// When in development/serve, require HTML file
 if (process.env.NODE_ENV !== "production") {
+	// When in development/serve, require HTML file
 	require("./index.html");
+} else {
+	// On build, require assets to get these bundled by Webpack
+	// import "./../../assets/icon-logo.png";
+	require("./images/banner.jpg");
+	require("./manifest.json");
+	require("./sw.js");
+	require("./libs/workbox/workbox-sw.prod.v2.1.2.js");
 }
 
 let root;

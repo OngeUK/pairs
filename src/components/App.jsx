@@ -35,6 +35,22 @@ export default class App extends Component {
 		this.setState({
 			emoji: selectRandomEmoji() // Emoji transcends games, so set this outside of the game's gridData state
 		});
+
+		// Register service worker (not on dev/serve)
+		if (process.env.NODE_ENV === "production") {
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("/sw.js")
+						.then((registration) => {
+							console.log("Registered:", registration);
+						})
+						.catch((error) => {
+							console.log("Registration failed: ", error);
+						});
+				});
+			}
+		}
 	}
 
 	// Start game when assets have preloaded
