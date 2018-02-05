@@ -3,7 +3,6 @@
 ---------- */
 
 $transitionSpeed: 500ms;
-$easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 
 .level-complete {
 	display: flex;
@@ -22,7 +21,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		background: #fff;
 		height: 100%;
 		left: 0;
-		opacity: 0.85;
+		opacity: 0.9;
 		overflow: hidden;
 		position: fixed;
 		top: 0;
@@ -50,7 +49,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 			background-image: url("../images/sunbeams.svg");
 			background-position: center;
 			background-repeat: no-repeat;
-			background-size: 66%;
+			background-size: 75%;
 			height: 100%;
 			opacity: 1;
 			padding-left: 200vw;
@@ -74,7 +73,7 @@ $easing: cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		line-height: 0;
 		opacity: 1;
 		transform: scale(1);
-		transition: $transitionSpeed $easing;
+		transition: $transitionSpeed cubic-bezier(0.5, -0.55, 0.5, 1.55);
 		width: 100%;
 		z-index: 3;
 

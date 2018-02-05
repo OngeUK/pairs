@@ -2,7 +2,7 @@
 export default function speech(value) {
 	if ("speechSynthesis" in window) {
 		// speechSynthesis behaves differently across browsers
-		// - In Chrome when selecting tiles quickly, this causes major animation, plus the second tile label isn't narrated
+		// - In Chrome when selecting tiles quickly, this causes major animation jank, plus the second tile label isn't narrated
 		// - Overcome this by not using window.speechSynthesis.cancel() in Chrome
 		// - This can lead to long gaps between narrations, plus a long queue
 		// - Until Chrome improves, we can't use .cancel(), but we'll use it on other browers

@@ -26,7 +26,7 @@ export default function newGame(_this, game = null, size = 12) {
 	// Load correct game grid data
 	let items;
 
-	// Add more games in time...
+	// Load correct data for the given game
 	switch (selectedGame) {
 		case "animals":
 			items = animals;
@@ -60,7 +60,7 @@ export default function newGame(_this, game = null, size = 12) {
 			data: pair,
 			flipped: true,
 			pulse: false,
-			colour: `#${(Math.random() * 0x666666 + 0x666666).toString(16).substring(0, 6)}`,
+			colour: `#${(Math.random() * 0x666666 + 0x666666).toString(16).substring(0, 6)}`, // Randomly generated tile colour
 			angle: number % 2 === 0 ? `transform: rotate(${random(-1.5, 0, true)}deg);` : `transform: rotate(${random(0, 1.5, true)}deg);` // Randomise angle tile item is displayed at
 		});
 		number++;

@@ -4,12 +4,11 @@
 	"author": {
 		"name": "Andrew Burton",
 		"email": "onge.uk@gmail.com",
-		"url": "http://www.onge.co.uk/pairs/"
+		"url": "https://pairs.onge.co.uk/"
 	},
 	"scripts": {
 		"serve": "webpack-dev-server --inline --hot --open",
-		"build": "rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js",
-		"oldbuild": "jest && rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/critical.js"
+		"build": "rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js && node node_scripts/critical.js"
 	},
 	"dependencies": {
 		"preact": "8.2.6"
@@ -43,7 +42,6 @@
 		"html-loader": "0.5.5",
 		"html-webpack-plugin": "2.30.1",
 		"img-loader": "2.0.0",
-		"jest": "22.1.4",
 		"lodash": "4.17.4",
 		"node-sass": "4.7.2",
 		"postcss-loader": "2.0.10",
@@ -60,8 +58,5 @@
 		"webpack": "3.10.0",
 		"webpack-dev-server": "2.11.1",
 		"workbox-webpack-plugin": "2.1.2"
-	},
-	"jest": {
-		"verbose": true
 	}
 }

@@ -38,8 +38,7 @@ module.exports = {
 		// Create HTML file
 		new HtmlWebpackPlugin({
 			template: "./index.html",
-			inject: false //,
-			//favicon: "./../../assets/favicon.ico"
+			inject: false
 		}),
 
 		new ScriptExtHtmlWebpackPlugin({
