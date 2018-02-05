@@ -28,10 +28,8 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 * HTTP/2 CDN delivery
 * Full offline support via Service Workers
 * Inlined critical path CSS using [Critical](https://www.npmjs.com/package/critical)
-    <!-- - 100/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
-* [WebPageTest](https://www.webpagetest.org) speed index of ~640
-* Run through PageSpeedInsights
-  -->
+* [PageSpeed Insights](https://www.webpagetest.org) score of 93/100 on mobile and 95/100 on desktop
+* 91/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
 
 ## Credits
 
