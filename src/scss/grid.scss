@@ -2,20 +2,18 @@
 - Grid SCSS
 ---------- */
 
-@import "./animations";
-
 .container {
-	--grid-cols: 2;
-	--grid-padding: 1.5rem;
+	--grid-cols: 3;
+	--grid-padding: 1rem;
 	--max-grid-width: 100%;
 	animation: reveal 600ms cubic-bezier(0.55, 0.34, 0, 1.66);
-	margin: calc(var(--grid-padding) * 2) auto;
+	margin: var(--grid-padding) auto;
 	max-width: var(--max-grid-width);
 	width: 80vw;
 
 	@media ($bp-s) {
 		--max-grid-width: 70%;
-		margin: var(--grid-padding) auto;
+		--grid-padding: 1.5rem;
 	}
 
 	@media ($bp-m) {
