@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title>Pairs</title>
 		<link rel="manifest" href="manifest.json">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Picture matching educational game for children">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +15,6 @@
 		<meta name="msapplication-navbutton-color" content="#fcf9e7">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="msapplication-starturl" content="/pairs/">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 		<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" sizes="512x512" href="images/icons/app.png">
@@ -24,17 +23,31 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="en_GB" />
 		<meta property="og:title" content="Pairs" />
-		<meta property="og:image" content="https://pairs.onge.co.uk/images/banner.png" />
+		<meta property="og:image" content="https://pairs.onge.co.uk/images/banner.jpg" />
 		<meta property="og:url" content="https://pairs.onge.co.uk/" />
 		<meta property="og:description" content="Picture matching educational game for children" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content="https://pairs.onge.co.uk/" />
 		<meta name="twitter:title" content="Pairs" />
 		<meta name="twitter:description" content="Picture matching educational game for children" />
-		<meta name="twitter:image:src" content="https://pairs.onge.co.uk/images/banner.png" />
+		<meta name="twitter:image:src" content="https://pairs.onge.co.uk/images/banner.jpg" />
 	</head>
 
 	<body>
+		<div id="app" class="loader loader-wrapper">
+			<div class="loader loader_progress" style="width: 0%">
+				<svg width="0" height="0">
+					<defs>
+						<clipPath id="mask">
+							<path
+								class="st0"
+								d="M170,80h-70V10c0-5.5-4.5-10-10-10H10C4.5,0,0,4.5,0,10v80c0,5.5,4.5,10,10,10h70v70c0,5.5,4.5,10,10,10h80c5.5,0,10-4.5,10-10V90C180,84.5,175.5,80,170,80z"
+							/>
+						</clipPath>
+					</defs>
+				</svg>
+			</div>
+		</div>
 		<link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css %>">
 		<script defer src="<%= htmlWebpackPlugin.files.chunks['app'].entry %>"></script>
 		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>

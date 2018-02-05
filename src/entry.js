@@ -1,6 +1,6 @@
 /* eslint-disable sort-imports */
-import "./scss/app.scss";
 import {h, render} from "preact";
+import "./scss/app.scss";
 
 if (process.env.NODE_ENV !== "production") {
 	// When in development/serve, require HTML file
@@ -16,17 +16,16 @@ if (process.env.NODE_ENV !== "production") {
 	require("./libs/workbox/workbox-sw.prod.v2.1.2.js");
 }
 
-let root;
-
 function init() {
 	let App = require("./components/app").default;
 
-	root = render(<App />, document.body, root);
+	render(<App />, document.body, document.getElementById("app"));
 }
 
-require("preact/devtools"); // Enable React DevTools in Preact
+// Enable React DevTools in Preact
+require("preact/devtools");
 
-// in development, set up HMR:
+// In development, set up HMR:
 if (module.hot) {
 	module.hot.accept("./components/app", () => requestAnimationFrame(init));
 }
