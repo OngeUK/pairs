@@ -31,6 +31,26 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 * [PageSpeed Insights](https://www.webpagetest.org) score of 93/100 on mobile and 95/100 on desktop
 * 91/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
 
+## Development dependencies
+
+* [Node](https://nodejs.org/en/)
+* [Yarn](https://yarnpkg.com/lang/en/)
+* [rimraf](https://www.npmjs.com/package/rimraf)
+
+## Workflow
+
+`yarn`
+
+Install dev dependencies
+
+`yarn serve`
+
+Serve _Pairs_ on localhost webpack-dev-server with Hot Module Reloading
+
+`yarn build`
+
+Build _Pairs_ files for deployment
+
 ## Credits
 
 _Pairs_ is built using a collection of third-party resources:
