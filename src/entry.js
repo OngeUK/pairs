@@ -1,6 +1,29 @@
 /* eslint-disable sort-imports */
-import {h, render} from "preact";
+//import {h, render} from "preact";
+import {createStore} from "redux";
+import {reducers} from "./redux/reducers";
+
 import "./scss/app.scss";
+import {actionLevelComplete} from "./redux/actions/level-complete";
+import {actionPreloadComplete, actionPreloadFailed, actionPreloadProgress} from "./redux/actions/preload";
+
+const store = createStore(reducers);
+
+// Log the initial state
+console.log("Get store", store.getState());
+
+// Every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+const unsubscribe = store.subscribe(() => console.log(store.getState()));
+
+// Dispatch some actions
+store.dispatch(actionLevelComplete(true));
+store.dispatch(actionPreloadProgress(10));
+store.dispatch(actionPreloadComplete(false));
+store.dispatch(actionPreloadFailed());
+
+// Stop listening to state updates
+unsubscribe();
 
 if (process.env.NODE_ENV !== "production") {
 	// When in development/serve, require HTML file
@@ -16,18 +39,18 @@ if (process.env.NODE_ENV !== "production") {
 	require("./libs/workbox/workbox-sw.prod.v2.1.2.js");
 }
 
-function init() {
-	let App = require("./components/app").default;
+// function init() {
+// 	let App = require("./components/app").default;
 
-	render(<App />, document.body, document.getElementById("app"));
-}
+// 	render(<App />, document.body, document.getElementById("app"));
+// }
 
 // Enable React DevTools in Preact
 require("preact/devtools");
 
 // In development, set up HMR:
-if (module.hot) {
-	module.hot.accept("./components/app", () => requestAnimationFrame(init));
-}
+// if (module.hot) {
+// 	module.hot.accept("./components/app", () => requestAnimationFrame(init));
+// }
 
-init();
+//init();

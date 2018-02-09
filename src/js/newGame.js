@@ -8,7 +8,7 @@ const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
 const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
-// Set up a new game (hard-coded default of colours for now)
+// Set up a new game
 export default function newGame(_this, game = null, size = 12) {
 	// Default app state
 	_this.setState({

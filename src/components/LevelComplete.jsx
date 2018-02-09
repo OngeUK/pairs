@@ -3,34 +3,34 @@ import {h, Component} from "preact";
 export default class LevelComplete extends Component {
 	componentWillMount() {
 		this.setState({
-			applyCssClasses: true
+			reveal: true
 		});
 	}
 
 	render() {
 		const {stageOver, startNewStage, emoji} = this.props,
-			{applyCssClasses} = this.state,
+			{reveal} = this.state,
 			css = {
 				complete: stageOver ? "" : " level-complete_hide",
-				overlay: applyCssClasses ? " level-complete__overlay_hide" : "",
-				sunbeams: applyCssClasses ? " level-complete__sunbeams-bg_hide" : "",
-				contents: applyCssClasses ? " level-complete__contents_hide" : ""
+				overlay: reveal ? " level-complete__overlay_hide" : "",
+				sunbeams: reveal ? " level-complete__sunbeams-bg_hide" : "",
+				contents: reveal ? " level-complete__contents_hide" : ""
 			};
 
 		let animationStatus = true;
 
-		if (stageOver && applyCssClasses && animationStatus) {
+		if (stageOver && reveal && animationStatus) {
 			// Reveal sunbeams
 			setTimeout(() => {
 				animationStatus = false;
 				this.setState({
-					applyCssClasses: false
+					reveal: false
 				});
 
 				// Hide sunbeams
 				setTimeout(() => {
 					this.setState({
-						applyCssClasses: true
+						reveal: true
 					});
 
 					// Start next stage/level
