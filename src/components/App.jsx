@@ -205,18 +205,18 @@ export default class App extends Component {
 								}
 							}, 1000);
 
-							// Allow animations to fire before setting next game
+							// Allow emoji reveal to fire before setting next game
 							setTimeout(() => {
 								// If player has yet to complete the largest grid, level up
 								if (gridSize !== 20) {
-									newGame(this, selectedGame, gridSize + 4);
+									newGame(this, selectedGame, gridSize + 4, false);
 								} else {
 									// Game over - return to home screen
 									this.setState({
 										selectedGame: null
 									});
 								}
-							}, 4000);
+							}, 3000);
 						}
 					}, 500);
 				}

@@ -9,7 +9,7 @@ const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shu
 const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
 // Set up a new game (hard-coded default of colours for now)
-export default function newGame(_this, game = null, size = 12) {
+export default function newGame(_this, game = null, size = 12, firstLevel = true) {
 	// Default app state
 	_this.setState({
 		active: false,
@@ -73,7 +73,10 @@ export default function newGame(_this, game = null, size = 12) {
 
 	// Play pop sound effect
 	if (sound) {
-		playAudio("pop");
+		// Set timing
+		setTimeout(() => {
+			playAudio("pop");
+		}, firstLevel ? 0 : 1000);
 	}
 
 	// Scroll to top of page (for mobile users)
@@ -102,5 +105,5 @@ export default function newGame(_this, game = null, size = 12) {
 				gridData: gridData
 			});
 		}
-	}, 225 * _this.state.gridSize);
+	}, 250 * _this.state.gridSize);
 }
