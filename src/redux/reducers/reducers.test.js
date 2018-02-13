@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import * as global from "./../actions/global";
 import * as preload from "./../actions/preload";
-import {actionLevelComplete} from "./../actions/level-complete";
+import {actionLevelComplete} from "./../actions/levelComplete";
 import {createStore} from "redux";
 import {reducers} from ".";
 

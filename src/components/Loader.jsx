@@ -1,3 +1,4 @@
+import {actionPreloadProgress, actionPreloadFailed, actionPreloadComplete} from "./../redux/actions/preload";
 import {h, Component} from "preact";
 import {preload} from "./../data/preload.js";
 
@@ -10,16 +11,13 @@ export default class Loader extends Component {
 	}
 
 	componentWillMount() {
-		this.setState({
-			percentage: 0,
-			error: false
-		});
-
 		this.loadAssets();
 	}
 
 	// Pre-load all assets
 	loadAssets() {
+		const store = this.context.store;
+
 		// Load grid data from JSON file
 		const jsonData = preload,
 			items = jsonData.data,
@@ -42,9 +40,7 @@ export default class Loader extends Component {
 					loaded++;
 
 					// Update percentage loaded state value
-					this.setState({
-						percentage: loaded / len * 100
-					});
+					store.dispatch(actionPreloadProgress(loaded / len * 100));
 				};
 
 				// Problem loading image
@@ -61,18 +57,17 @@ export default class Loader extends Component {
 		Promise.all(items.map(toLoad))
 			.then(() => {
 				// All assets have loaded, so start the game
-				contentLoaded();
+				store.dispatch(actionPreloadComplete(true));
+				contentLoaded(); // Just call newGame() here?
 			})
 			.catch(() => {
 				// Update error state
-				this.setState({
-					error: true
-				});
+				store.dispatch(actionPreloadFailed());
 			});
 	}
 
 	render() {
-		const {percentage, error} = this.state;
+		const {percentage, error} = this.props;
 
 		const mask = (
 			<svg width="0" height="0">

@@ -4,7 +4,7 @@ import ButtonSound from "./ButtonSound";
 import Grid from "./Grid";
 import HomeButton from "./ButtonHome";
 import LevelComplete from "./LevelComplete";
-import Loader from "./Loader";
+import LoaderContainer from "../containers/Loader";
 import newGame from "./../js/newGame";
 import playAudio from "./../js/playAudio";
 import SelectGame from "./SelectGame";
@@ -55,10 +55,10 @@ export default class App extends Component {
 
 	// Start game when assets have preloaded
 	contentLoaded() {
-		this.setState({
-			loading: false
-		});
-		newGame(this);
+		// this.setState({
+		// 	loading: false
+		// });
+		newGame(this); //<-- MAKE THIS USE REDUX, does this need to be in App.jsx?
 	}
 
 	// Toggle game sound on or off
@@ -228,7 +228,7 @@ export default class App extends Component {
 		let output;
 
 		if (this.state.loading) {
-			output = <Loader contentLoaded={this.contentLoaded} />;
+			output = <LoaderContainer contentLoaded={this.contentLoaded} />;
 		} else {
 			output = (
 				<div>
