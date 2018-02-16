@@ -1,10 +1,14 @@
 import {h, Component} from "preact";
-import speech from "./../js/speech";
-import TileData from "./TileData";
+import speech from "./../helpers/speech";
+import TileDataContainer from "../containers/TileData";
+import {tileInteraction} from "../helpers/tileInteraction";
+import {tilePulse} from "../helpers/tilePulse";
 
 export default class Tile extends Component {
 	revealTile() {
-		const {flipped, active, sound, tileInteraction} = this.props;
+		const {flipped} = this.props,
+			{active} = this.props.game,
+			{sound} = this.props.global;
 
 		// Only reveal if tile is not already revealed and game state is active
 		if (!flipped && active) {
@@ -21,7 +25,7 @@ export default class Tile extends Component {
 	}
 
 	render() {
-		const {id, data, colour, angle, flipped, pulse, tilePulse, selectedGame} = this.props;
+		const {id, data, colour, angle, flipped, pulse} = this.props;
 		let backFlippedCss = "",
 			frontFlippedCss = "",
 			pulseCss = "";
@@ -54,7 +58,7 @@ export default class Tile extends Component {
 							/>
 						</svg>
 					</div>
-					<TileData selectedGame={selectedGame} cssClass={frontFlippedCss} colour={colour} data={data} />
+					<TileDataContainer cssClass={frontFlippedCss} colour={colour} data={data} />
 				</div>
 			</div>
 		);

@@ -1,6 +1,6 @@
 {
 	"name": "pairs",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": {
 		"name": "Andrew Burton",
 		"email": "onge.uk@gmail.com",
@@ -8,7 +8,8 @@
 	},
 	"scripts": {
 		"serve": "webpack-dev-server --inline --hot --open",
-		"build": "rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js && node node_scripts/critical.js"
+		"build":
+			"jest && rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js && node node_scripts/critical.js"
 	},
 	"dependencies": {
 		"preact": "8.2.6",
@@ -16,8 +17,8 @@
 		"redux": "3.7.2"
 	},
 	"devDependencies": {
-		"@types/react": "16.0.35",
-		"autoprefixer": "7.2.5",
+		"@types/react": "16.0.38",
+		"autoprefixer": "8.0.0",
 		"babel-core": "6.26.0",
 		"babel-eslint": "8.2.1",
 		"babel-loader": "7.1.2",
@@ -30,12 +31,12 @@
 		"css-loader": "0.28.9",
 		"css-mqpacker": "6.0.2",
 		"directory-tree": "2.0.0",
-		"eslint": "4.16.0",
+		"eslint": "4.17.0",
 		"eslint-config-standard": "10.2.1",
 		"eslint-config-standard-preact": "1.1.6",
 		"eslint-loader": "1.9.0",
 		"eslint-plugin-import": "2.8.0",
-		"eslint-plugin-node": "5.2.1",
+		"eslint-plugin-node": "6.0.0",
 		"eslint-plugin-promise": "3.6.0",
 		"eslint-plugin-react": "7.6.1",
 		"eslint-plugin-standard": "3.0.1",
@@ -43,23 +44,22 @@
 		"file-loader": "1.1.6",
 		"html-loader": "0.5.5",
 		"html-webpack-plugin": "2.30.1",
-		"img-loader": "2.0.0",
-		"jest": "22.2.1",
-		"lodash": "4.17.4",
+		"img-loader": "2.0.1",
+		"jest": "22.3.0",
+		"lodash": "4.17.5",
 		"node-sass": "4.7.2",
-		"postcss-loader": "2.0.10",
+		"postcss-loader": "2.1.0",
 		"postcss-pxtorem": "4.0.1",
 		"postcss-responsive-type": "1.0.0",
-		"remote-redux-devtools": "0.5.12",
 		"sass-loader": "6.0.6",
 		"script-ext-html-webpack-plugin": "1.8.8",
 		"style-loader": "0.20.1",
 		"stylelint": "8.4.0",
 		"stylelint-order": "0.8.0",
-		"stylelint-webpack-plugin": "0.10.1",
+		"stylelint-webpack-plugin": "0.10.2",
 		"uglifyjs-webpack-plugin": "1.1.8",
 		"url-loader": "0.6.2",
-		"webpack": "3.10.0",
+		"webpack": "3.11.0",
 		"webpack-dev-server": "2.11.1",
 		"workbox-webpack-plugin": "2.1.2"
 	},

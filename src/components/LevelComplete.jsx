@@ -1,45 +1,43 @@
 import {h, Component} from "preact";
+import selectRandomEmoji from "./../helpers/selectRandomEmoji";
 
 export default class LevelComplete extends Component {
 	componentWillMount() {
-		this.setState({
-			reveal: true
-		});
+		// this.props.toggleShowEmoji();
+		this.props.setEmoji(selectRandomEmoji());
 	}
 
 	render() {
-		const {stageOver, startNewStage, emoji} = this.props,
-			{reveal} = this.state,
+		const {stageOver, showEmoji, active} = this.props.game,
+			{emoji} = this.props.global,
 			css = {
 				complete: stageOver ? "" : " level-complete_hide",
-				overlay: reveal ? " level-complete__overlay_hide" : "",
-				sunbeams: reveal ? " level-complete__sunbeams-bg_hide" : "",
-				contents: reveal ? " level-complete__contents_hide" : ""
+				overlay: showEmoji ? "" : " level-complete__overlay_hide",
+				sunbeams: showEmoji ? "" : " level-complete__sunbeams-bg_hide",
+				contents: showEmoji ? "" : " level-complete__contents_hide"
 			};
 
-		let animationStatus = true;
-
-		if (stageOver && reveal && animationStatus) {
+		if (stageOver && !active) {
+			this.props.toggleActive();
 			// Reveal sunbeams
 			setTimeout(() => {
-				animationStatus = false;
-				this.setState({
-					reveal: false
-				});
-
-				// Hide sunbeams
-				setTimeout(() => {
-					this.setState({
-						reveal: true
-					});
-
-					// Start next stage/level
-					setTimeout(() => {
-						animationStatus = true;
-						startNewStage();
-					}, 500);
-				}, 3000);
+				this.props.toggleShowEmoji();
 			}, 1000);
+
+			// 	//this.props.toggleShowEmoji();
+
+			// Hide sunbeams
+			setTimeout(() => {
+				this.props.toggleShowEmoji();
+
+				// Start next stage/level
+				setTimeout(() => {
+					// Stage over
+					this.props.toggleStageOver();
+					this.props.toggleActive();
+					this.props.setEmoji(selectRandomEmoji());
+				}, 500);
+			}, 4000);
 		}
 
 		return (

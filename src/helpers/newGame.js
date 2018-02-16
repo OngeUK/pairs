@@ -1,27 +1,26 @@
+import {actionToggleActive, actionSetGridSize, actionSetGridData, actionChangeCompletedTileCount} from "./../redux/actions/game";
+import {actionSetGame} from "./../redux/actions/global";
 import {animals} from "./../data/animals";
 import {colours} from "./../data/colours";
 import {numbers} from "./../data/numbers";
 import playAudio from "./playAudio";
 import {shapes} from "./../data/shapes";
+import {store} from "./../entry.js";
 
 const sampleSize = require("lodash/sampleSize"); // https://lodash.com/docs/4.17.4#sampleSize
 const shuffle = require("lodash/shuffle"); // https://lodash.com/docs/4.17.4#shuffle
 const random = require("lodash/random"); // https://lodash.com/docs/4.17.4#random
 
 // Set up a new game
-export default function newGame(_this, game = null, size = 12) {
-	// Default app state
-	_this.setState({
-		active: false,
-		selectedGame: game,
-		gridSize: size,
-		currentTile: null,
-		completed: 0,
-		sound: typeof _this.state.sound === "undefined" ? true : _this.state.sound // Keep continuation of sound status between games
-	});
+export default function newGame(game = null, size = 12, firstLevel = true) {
+	// Update state
+	store.dispatch(actionSetGame(game));
+	store.dispatch(actionSetGridSize(size));
+	store.dispatch(actionChangeCompletedTileCount(0));
 
 	// Get state data
-	const {gridSize, selectedGame, sound} = _this.state;
+	const {gridSize} = store.getState().game,
+		{selectedGame, sound} = store.getState().global;
 
 	// Load correct game grid data
 	let items;
@@ -67,13 +66,14 @@ export default function newGame(_this, game = null, size = 12) {
 	}
 
 	// Add to state
-	_this.setState({
-		gridData: gridData
-	});
+	store.dispatch(actionSetGridData(gridData));
 
 	// Play pop sound effect
 	if (sound) {
-		playAudio("pop");
+		// Set timing
+		setTimeout(() => {
+			playAudio("pop");
+		}, firstLevel ? 0 : 1000);
 	}
 
 	// Scroll to top of page (for mobile users)
@@ -83,7 +83,7 @@ export default function newGame(_this, game = null, size = 12) {
 	// (This is designed for pre-schoolers, so we don't want to make it too hard!)
 	// Hide tiles after a delay (depending on how many tiles are in the grid)
 	setTimeout(() => {
-		const initialGridData = _this.state.gridData;
+		const initialGridData = store.getState().game.gridData;
 
 		const gridData = initialGridData.map((value) => {
 			value.flipped = false;
@@ -91,16 +91,14 @@ export default function newGame(_this, game = null, size = 12) {
 		});
 
 		// Fire only if user hasn't immediately returned to the home screen
-		if (_this.state.selectedGame !== null) {
+		if (store.getState().global.selectedGame !== null) {
 			// Play swoosh sound effect
 			if (sound) {
 				playAudio("swooshes");
 			}
 			// Update state to start game
-			_this.setState({
-				active: true,
-				gridData: gridData
-			});
+			store.dispatch(actionToggleActive());
+			store.dispatch(actionSetGridData(gridData));
 		}
-	}, 225 * _this.state.gridSize);
+	}, 250 * store.getState().game.gridSize);
 }

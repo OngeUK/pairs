@@ -1,9 +1,10 @@
 import {h, Component} from "preact";
-import formatImageUrl from "./../js/formatImageUrl";
+import formatImageUrl from "./../helpers/formatImageUrl";
 
 export default class TileData extends Component {
 	render() {
-		const {selectedGame, cssClass, colour, data} = this.props,
+		const {cssClass, colour, data} = this.props,
+			{selectedGame} = this.props.global,
 			imageExt = selectedGame === "animals" ? "jpg" : "svg";
 		let output;
 

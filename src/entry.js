@@ -1,15 +1,12 @@
 /* eslint-disable sort-imports */
 import {h, render} from "preact";
 import {createStore} from "redux";
-import devToolsEnhancer from "remote-redux-devtools";
 import {Provider} from "preact-redux";
 import {reducers} from "./redux/reducers";
 
 import "./scss/app.scss";
-// import {actionLevelComplete} from "./redux/actions/levelComplete";
-// import {actionPreloadComplete, actionPreloadFailed, actionPreloadProgress} from "./redux/actions/preload";
 
-const store = createStore(reducers, devToolsEnhancer());
+export const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 if (process.env.NODE_ENV !== "production") {
 	// When in development/serve, require HTML file
@@ -26,31 +23,15 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 function init() {
-	let App = require("./components/app").default;
+	let AppContainer = require("./containers/App").default;
 
 	render(
 		<Provider store={store}>
-			<App />
+			<AppContainer />
 		</Provider>,
 		document.body,
 		document.getElementById("app")
 	);
-
-	// Log the initial state
-	//console.log("Get store", store.getState());
-
-	// Every time the state changes, log it
-	// Note that subscribe() returns a function for unregistering the listener
-	//const unsubscribe = store.subscribe(() => console.log(store.getState()));
-
-	// Dispatch some actions
-	// store.dispatch(actionLevelComplete(true));
-	// store.dispatch(actionPreloadProgress(10));
-	// store.dispatch(actionPreloadComplete(false));
-	// store.dispatch(actionPreloadFailed());
-
-	// Stop listening to state updates
-	//unsubscribe();
 }
 
 // Enable React DevTools in Preact
@@ -58,7 +39,7 @@ require("preact/devtools");
 
 // In development, set up HMR:
 if (module.hot) {
-	module.hot.accept("./components/app", () => requestAnimationFrame(init));
+	module.hot.accept("./containers/App", () => requestAnimationFrame(init));
 }
 
 init();

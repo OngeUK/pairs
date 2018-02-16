@@ -2,7 +2,7 @@
 const initialGlobalState = {
 	sound: true,
 	selectedGame: null,
-	emoji: null
+	emoji: "grinning-face-with-smiling-eyes"
 };
 
 export const global = (state = initialGlobalState, action) => {

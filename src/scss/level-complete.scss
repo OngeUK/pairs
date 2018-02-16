@@ -21,7 +21,7 @@ $transitionSpeed: 500ms;
 		background: #fff;
 		height: 100%;
 		left: 0;
-		opacity: 0.9;
+		opacity: 1;
 		overflow: hidden;
 		position: fixed;
 		top: 0;
@@ -52,14 +52,13 @@ $transitionSpeed: 500ms;
 			background-size: 75%;
 			height: 100%;
 			opacity: 1;
-			padding-left: 200vw;
-			padding-top: 200vw;
+			padding-left: 200vmax;
+			padding-top: 200vmax;
 			transition: $transitionSpeed ease-in-out;
 			width: 100%;
 			z-index: 2;
 
 			&_hide {
-				//background-size: 0;
 				opacity: 0;
 			}
 		}
@@ -88,7 +87,11 @@ $transitionSpeed: 500ms;
 
 			&-img {
 				height: auto;
-				width: 30%;
+				width: 40%;
+
+				@media ($bp-m) {
+					width: 30%;
+				}
 			}
 		}
 	}
