@@ -64,6 +64,7 @@
 		"workbox-webpack-plugin": "2.1.2"
 	},
 	"jest": {
-		"verbose": true
+		"verbose": true,
+		"setupTestFrameworkScriptFile": "./src/redux/reducers/localStorageMock.js"
 	}
 }

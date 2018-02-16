@@ -3,7 +3,6 @@ import selectRandomEmoji from "./../helpers/selectRandomEmoji";
 
 export default class LevelComplete extends Component {
 	componentWillMount() {
-		// this.props.toggleShowEmoji();
 		this.props.setEmoji(selectRandomEmoji());
 	}
 
@@ -23,8 +22,6 @@ export default class LevelComplete extends Component {
 			setTimeout(() => {
 				this.props.toggleShowEmoji();
 			}, 1000);
-
-			// 	//this.props.toggleShowEmoji();
 
 			// Hide sunbeams
 			setTimeout(() => {

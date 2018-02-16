@@ -9,7 +9,7 @@ export default class ToggleSound extends Component {
 
 	render() {
 		const {sound} = store.getState().global,
-			btnCss = !sound ? " btn-sound_disabled" : "";
+			btnCss = sound === "disabled" ? " btn-sound_disabled" : "";
 
 		return (
 			<button class={`btn btn-sound${btnCss}`} onClick={() => this.toggle()}>

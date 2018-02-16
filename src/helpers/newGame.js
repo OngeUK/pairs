@@ -69,7 +69,7 @@ export default function newGame(game = null, size = 12, firstLevel = true) {
 	store.dispatch(actionSetGridData(gridData));
 
 	// Play pop sound effect
-	if (sound) {
+	if (sound === "enabled") {
 		// Set timing
 		setTimeout(() => {
 			playAudio("pop");
@@ -93,9 +93,8 @@ export default function newGame(game = null, size = 12, firstLevel = true) {
 		// Fire only if user hasn't immediately returned to the home screen
 		if (store.getState().global.selectedGame !== null) {
 			// Play swoosh sound effect
-			if (sound) {
-				playAudio("swooshes");
-			}
+			playAudio("swooshes");
+
 			// Update state to start game
 			store.dispatch(actionToggleActive());
 			store.dispatch(actionSetGridData(gridData));

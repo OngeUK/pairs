@@ -1,6 +1,10 @@
+import {store} from "./../entry.js";
+
 // Use speech synthesis API to narrate tile label
 export default function speech(value) {
-	if ("speechSynthesis" in window) {
+	const {sound} = store.getState().global;
+
+	if ("speechSynthesis" in window && sound === "enabled") {
 		// speechSynthesis behaves differently across browsers
 		// - In Chrome when selecting tiles quickly, this causes major animation jank, plus the second tile label isn't narrated
 		// - Overcome this by not using window.speechSynthesis.cancel() in Chrome

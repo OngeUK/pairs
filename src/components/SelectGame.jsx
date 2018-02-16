@@ -5,16 +5,14 @@ import speech from "../helpers/speech";
 import {store} from "./../entry.js";
 
 export default class SelectGame extends Component {
-	setGame(game, sound) {
+	setGame(game) {
 		store.dispatch(actionSetGame(game));
 
 		// Start new game
 		newGame(game);
 
 		// Use speech synthesis API to narrate game title (if sound is enabled)
-		if (sound) {
-			speech(game);
-		}
+		speech(game);
 	}
 
 	render() {

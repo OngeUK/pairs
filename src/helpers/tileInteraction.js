@@ -17,9 +17,7 @@ export function tileInteraction(value, element) {
 		gridData[element.id].flipped = true;
 
 		// Play swoosh sound effect
-		if (sound) {
-			playAudio("swoosh");
-		}
+		playAudio("swoosh");
 
 		// Update state with new values
 		store.dispatch(actionSetGridData(gridData));
@@ -46,9 +44,7 @@ export function tileInteraction(value, element) {
 					gridData[element.id].flipped = false;
 
 					// Play swoosh sound effect
-					if (sound) {
-						playAudio("swooshes");
-					}
+					playAudio("swooshes");
 
 					// Player got it wrong - reset the state for the next go
 					store.dispatch(actionToggleActive());
@@ -60,9 +56,7 @@ export function tileInteraction(value, element) {
 				store.dispatch(actionToggleActive()); // Disable tile clicks until matching pair animation fires
 
 				// Play tile matched sound effect
-				if (sound) {
-					playAudio("ding");
-				}
+				playAudio("ding");
 
 				// setTimeouts to allow for transitions/animations to fire first
 				setTimeout(() => {
@@ -86,7 +80,7 @@ export function tileInteraction(value, element) {
 
 						// Play cheer sound effect, after small delay
 						setTimeout(() => {
-							if (sound) {
+							if (sound === "enabled") {
 								playAudio("cheer");
 							}
 						}, 1000);

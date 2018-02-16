@@ -1,17 +1,18 @@
 // Initial global state
 const initialGlobalState = {
-	sound: true,
+	sound: localStorage.getItem("sound") || "enabled",
 	selectedGame: null,
 	emoji: "grinning-face-with-smiling-eyes"
 };
 
 export const global = (state = initialGlobalState, action) => {
-	const soundEnabled = !state.sound;
+	const soundSetting = state.sound === "enabled" ? "disabled" : "enabled";
 
 	switch (action.type) {
 		case "TOGGLE-SOUND":
+			localStorage.setItem("sound", soundSetting);
 			return Object.assign({}, state, {
-				sound: soundEnabled
+				sound: soundSetting
 			});
 		case "SET-GAME":
 			return Object.assign({}, state, {

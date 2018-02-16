@@ -4,21 +4,19 @@ import playAudio from "../helpers/playAudio";
 import {store} from "./../entry.js";
 
 export default class ButtonHome extends Component {
-	toggle(sound) {
+	toggle() {
 		store.dispatch(actionBackToHome());
 
 		// Play pop sound effect
-		if (sound) {
-			playAudio("pop");
-		}
+		playAudio("pop");
 	}
 
 	render() {
-		const {selectedGame, sound} = store.getState().global,
+		const {selectedGame} = store.getState().global,
 			btnCss = selectedGame === null ? " btn-home_disabled" : "";
 
 		return (
-			<button class={`btn btn-home${btnCss}`} onClick={() => this.toggle(sound)}>
+			<button class={`btn btn-home${btnCss}`} onClick={() => this.toggle()}>
 				Home
 			</button>
 		);

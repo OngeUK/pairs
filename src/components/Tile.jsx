@@ -7,8 +7,7 @@ import {tilePulse} from "../helpers/tilePulse";
 export default class Tile extends Component {
 	revealTile() {
 		const {flipped} = this.props,
-			{active} = this.props.game,
-			{sound} = this.props.global;
+			{active} = this.props.game;
 
 		// Only reveal if tile is not already revealed and game state is active
 		if (!flipped && active) {
@@ -18,9 +17,7 @@ export default class Tile extends Component {
 			tileInteraction(value, this.base);
 
 			// Use speech synthesis API to narrate tile label (if sound is enabled)
-			if (sound) {
-				speech(value);
-			}
+			speech(value);
 		}
 	}
 
