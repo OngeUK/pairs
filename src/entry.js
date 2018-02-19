@@ -23,14 +23,15 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 function init() {
-	let AppContainer = require("./containers/App").default;
+	const AppContainer = require("./containers/App").default,
+		parent = document.getElementById("app");
 
 	render(
 		<Provider store={store}>
 			<AppContainer />
 		</Provider>,
-		document.body,
-		document.getElementById("app")
+		parent,
+		parent.lastChild
 	);
 }
 
