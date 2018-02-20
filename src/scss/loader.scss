@@ -4,6 +4,7 @@
 
 .loader {
 	background: #fff;
+	-webkit-clip-path: none; /* stylelint-disable-line */ // Safari fix
 	clip-path: url("#mask");
 	height: 180px;
 	transition: 150ms linear;
