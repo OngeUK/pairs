@@ -26,21 +26,32 @@ function init() {
 	const AppContainer = require("./containers/App").default,
 		parent = document.getElementById("app");
 
-	render(
-		<Provider store={store}>
-			<AppContainer />
-		</Provider>,
-		parent,
-		parent.lastChild
-	);
+	// Different setups are required for serve and build
+	if (process.env.NODE_ENV === "production") {
+		render(
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>,
+			document.body,
+			parent
+		);
+	} else {
+		render(
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>,
+			parent,
+			parent.lastChild
+		);
+	}
 }
-
-// Enable React DevTools in Preact
-require("preact/devtools");
 
 // In development, set up HMR:
 if (module.hot) {
 	module.hot.accept("./containers/App", () => requestAnimationFrame(init));
+
+	// Enable React DevTools in Preact
+	require("preact/devtools");
 }
 
 init();
