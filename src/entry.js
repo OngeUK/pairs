@@ -1,6 +1,12 @@
 /* eslint-disable sort-imports */
 import {h, render} from "preact";
+import {createStore} from "redux";
+import {Provider} from "preact-redux";
+import {reducers} from "./redux/reducers";
+
 import "./scss/app.scss";
+
+export const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 if (process.env.NODE_ENV !== "production") {
 	// When in development/serve, require HTML file
@@ -17,17 +23,35 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 function init() {
-	let App = require("./components/app").default;
+	const AppContainer = require("./containers/App").default,
+		parent = document.getElementById("app");
 
-	render(<App />, document.body, document.getElementById("app"));
+	// Different setups are required for serve and build
+	if (process.env.NODE_ENV === "production") {
+		render(
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>,
+			document.body,
+			parent
+		);
+	} else {
+		render(
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>,
+			parent,
+			parent.lastChild
+		);
+	}
 }
-
-// Enable React DevTools in Preact
-require("preact/devtools");
 
 // In development, set up HMR:
 if (module.hot) {
-	module.hot.accept("./components/app", () => requestAnimationFrame(init));
+	module.hot.accept("./containers/App", () => requestAnimationFrame(init));
+
+	// Enable React DevTools in Preact
+	require("preact/devtools");
 }
 
 init();

@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StyleLintPlugin = require("stylelint-webpack-plugin");
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 module.exports = {
 	context: path.resolve(__dirname, "./src"),
@@ -56,7 +57,21 @@ module.exports = {
 		}),
 
 		// Prints more readable module names in the browser console on HMR updates
-		new webpack.NamedModulesPlugin()
+		new webpack.NamedModulesPlugin(),
+
+		// BrowserSync options
+		new BrowserSyncPlugin(
+			{
+				host: "localhost",
+				port: 3000,
+				proxy: "http://localhost:8080/"
+			},
+			// Plugin options
+			{
+				// prevent BrowserSync from reloading the page and let Webpack Dev Server take care of this
+				reload: false
+			}
+		)
 	],
 
 	// Loaders

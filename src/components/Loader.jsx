@@ -10,20 +10,16 @@ export default class Loader extends Component {
 	}
 
 	componentWillMount() {
-		this.setState({
-			percentage: 0,
-			error: false
-		});
-
 		this.loadAssets();
 	}
 
 	// Pre-load all assets
 	loadAssets() {
+		const props = this.props;
+
 		// Load grid data from JSON file
 		const jsonData = preload,
-			items = jsonData.data,
-			contentLoaded = this.props.contentLoaded;
+			items = jsonData.data;
 		const len = items.length;
 		let loaded = 0;
 
@@ -42,9 +38,7 @@ export default class Loader extends Component {
 					loaded++;
 
 					// Update percentage loaded state value
-					this.setState({
-						percentage: loaded / len * 100
-					});
+					props.preloadProgress(loaded / len * 100);
 				};
 
 				// Problem loading image
@@ -61,18 +55,16 @@ export default class Loader extends Component {
 		Promise.all(items.map(toLoad))
 			.then(() => {
 				// All assets have loaded, so start the game
-				contentLoaded();
+				props.preloadComplete(true);
 			})
 			.catch(() => {
 				// Update error state
-				this.setState({
-					error: true
-				});
+				props.preloadFailed();
 			});
 	}
 
 	render() {
-		const {percentage, error} = this.state;
+		const {percentage, error} = this.props.preload;
 
 		const mask = (
 			<svg width="0" height="0">

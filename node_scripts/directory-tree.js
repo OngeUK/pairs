@@ -2,7 +2,7 @@ const dirTree = require("directory-tree"); // https://www.npmjs.com/package/dire
 const fs = require("fs");
 
 // Use directory-tree to get all relevant files in the dist directory
-const tree = dirTree("./dist/", {exclude: /\.map|.html|.css|.js|.woff|.woff2|.json|.wav|.mp3|.ico|favicon/});
+const tree = dirTree("./dist/", {exclude: /\.map|.html|.css|.js|.woff|.woff2|.json|.wav|.mp3|.ico|favicon|banner.jpg/});
 
 // Build object containing only the file paths
 function getPaths(obj, items = []) {
