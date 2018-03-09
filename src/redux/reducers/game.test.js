@@ -14,6 +14,11 @@ test("Toggle active state", () => {
 	expect(store.getState().game.active).not.toBe(activeState);
 });
 
+test("Disable active state", () => {
+	store.dispatch(game.actionDisableActive());
+	expect(store.getState().game.active).toBe(false);
+});
+
 test("Completed tile count", () => {
 	store.dispatch(game.actionChangeCompletedTileCount(2));
 	expect(store.getState().game.completed).toBe(2);

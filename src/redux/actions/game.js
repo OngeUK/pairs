@@ -2,6 +2,10 @@ export const actionToggleActive = () => ({
 	type: "TOGGLE-ACTIVE-STATE"
 });
 
+export const actionDisableActive = () => ({
+	type: "DISABLE-ACTIVE-STATE"
+});
+
 export const actionSetGridSize = (size) => ({
 	type: "SET-GRID-SIZE-LEVEL",
 	value: size

@@ -9,18 +9,7 @@ export default class Grid extends Component {
 			<div class={`container grid-${gridSize}`}>
 				<div class="grid">
 					{gridData.map((item, i) => {
-						return (
-							<TileContainer
-								id={i}
-								data={item.data}
-								colour={item.colour}
-								angle={item.angle}
-								flipped={item.flipped}
-								pulse={item.pulse}
-								// tileInteraction={tileInteraction}
-								// tilePulse={tilePulse}
-							/>
-						);
+						return <TileContainer id={i} data={item.data} colour={item.colour} angle={item.angle} flipped={item.flipped} pulse={item.pulse} />;
 					})}
 				</div>
 			</div>

@@ -11,6 +11,7 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 ## Core technologies used
 
 * [Preact](https://preactjs.com/)
+* Redux
 * Service Workers, using [Workbox](https://workboxjs.org/)
 * CSS3 Grid
 * CSS custom properties
@@ -45,11 +46,15 @@ Install dev dependencies
 
 `yarn serve`
 
-Serve _Pairs_ on localhost webpack-dev-server with Hot Module Reloading
+Serve _Pairs_ on localhost webpack-dev-server with BrowserSync and Hot Module Reloading
 
 `yarn build`
 
 Build _Pairs_ files for deployment
+
+`jest`
+
+Run tests
 
 ## Credits
 

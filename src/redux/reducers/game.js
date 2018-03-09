@@ -19,6 +19,10 @@ export const game = (state = initialGameState, action) => {
 			return Object.assign({}, state, {
 				active: activeEnabled
 			});
+		case "DISABLE-ACTIVE-STATE":
+			return Object.assign({}, state, {
+				active: false
+			});
 		case "COMPLETED-TILE-COUNT":
 			return Object.assign({}, state, {
 				completed: action.value

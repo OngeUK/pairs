@@ -1,4 +1,5 @@
 import {h, Component} from "preact";
+import {actionDisableActive} from "../redux/actions/game";
 import {actionSetGame} from "../redux/actions/global";
 import newGame from "../helpers/newGame";
 import speech from "../helpers/speech";
@@ -7,6 +8,7 @@ import {store} from "./../entry.js";
 export default class SelectGame extends Component {
 	setGame(game) {
 		store.dispatch(actionSetGame(game));
+		store.dispatch(actionDisableActive());
 
 		// Start new game
 		newGame(game);

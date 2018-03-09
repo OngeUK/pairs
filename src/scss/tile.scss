@@ -42,11 +42,21 @@
 		@media ($bp-m) {
 			font-range: 75rem 120rem;
 			font-size: responsive 20px 34px;
+
+			.grid-16 & {
+				font-range: 75rem 120rem;
+				font-size: responsive 14px 24px;
+			}
 		}
 
 		@media ($bp-l) {
 			font-range: 120rem 130rem;
 			font-size: responsive 22px 32px;
+
+			.grid-16 & {
+				font-range: 120rem 130rem;
+				font-size: responsive 24px 26px;
+			}
 		}
 	}
 
