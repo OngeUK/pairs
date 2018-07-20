@@ -15,7 +15,7 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 * Service Workers, using [Workbox](https://workboxjs.org/)
 * CSS3 Grid
 * CSS custom properties
-* SASS with PostCSS
+* Sass with PostCSS
 * [Three.js](https://threejs.org/)
 * [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 * HTML5 audio
@@ -29,7 +29,7 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 * HTTP/2 CDN delivery
 * Full offline support via Service Workers
 * Inlined critical path CSS using [Critical](https://www.npmjs.com/package/critical)
-* [PageSpeed Insights](https://www.webpagetest.org) score of 93/100 on mobile and 95/100 on desktop
+* [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) score of 93/100 on mobile and 95/100 on desktop
 * 91/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
 
 ## Development dependencies
