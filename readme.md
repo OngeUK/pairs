@@ -1,8 +1,8 @@
 # **Pairs** - Picture matching educational game for children
 
-![alt text](https://pairs.onge.co.uk/images/banner.jpg "Screenshot of Pairs")
+![alt text](https://pairs.onge.uk/images/banner.jpg "Screenshot of Pairs")
 
-## **[Play Pairs in your browser](https://pairs.onge.co.uk/)**
+## **[Play Pairs in your browser](https://pairs.onge.uk/)**
 
 ## Introduction
 
@@ -10,33 +10,33 @@ _Pairs_ is a simple picture matching game that I've designed and built to play w
 
 ## Core technologies used
 
-* [Preact](https://preactjs.com/)
-* Redux
-* Service Workers, using [Workbox](https://workboxjs.org/)
-* CSS3 Grid
-* CSS custom properties
-* Sass with PostCSS
-* [Three.js](https://threejs.org/)
-* [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-* HTML5 audio
-* [Lodash](https://lodash.com/)
-* Webpack 3
-* Node
-* Yarn
+-   [Preact](https://preactjs.com/)
+-   Redux
+-   Service Workers, using [Workbox](https://workboxjs.org/)
+-   CSS3 Grid
+-   CSS custom properties
+-   Sass with PostCSS
+-   [Three.js](https://threejs.org/)
+-   [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
+-   HTML5 audio
+-   [Lodash](https://lodash.com/)
+-   Webpack 3
+-   Node
+-   Yarn
 
 ## Features
 
-* HTTP/2 CDN delivery
-* Full offline support via Service Workers
-* Inlined critical path CSS using [Critical](https://www.npmjs.com/package/critical)
-* [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) score of 93/100 on mobile and 95/100 on desktop
-* 91/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
+-   HTTP/2 CDN delivery
+-   Full offline support via Service Workers
+-   Inlined critical path CSS using [Critical](https://www.npmjs.com/package/critical)
+-   [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) score of 96/100 on mobile and 100/100 on desktop
+-   100/100 Progressive Web App score on [Lighthouse](https://developers.google.com/web/tools/lighthouse/)
 
 ## Development dependencies
 
-* [Node](https://nodejs.org/en/)
-* [Yarn](https://yarnpkg.com/lang/en/)
-* [rimraf](https://www.npmjs.com/package/rimraf)
+-   [Node](https://nodejs.org/en/)
+-   [Yarn](https://yarnpkg.com/lang/en/)
+-   [rimraf](https://www.npmjs.com/package/rimraf)
 
 ## Workflow
 
@@ -60,6 +60,6 @@ Run tests
 
 _Pairs_ is built using a collection of third-party resources:
 
-* https://fonts.google.com/specimen/Gloria+Hallelujah &ndash; Web font
-* https://www.pexels.com/ &ndash; Royalty-free animal images
-* https://freesound.org/ &ndash; Royalty-free sound effects
+-   https://fonts.google.com/specimen/Gloria+Hallelujah &ndash; Web font
+-   https://www.pexels.com/ &ndash; Royalty-free animal images
+-   https://freesound.org/ &ndash; Royalty-free sound effects

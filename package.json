@@ -4,12 +4,11 @@
 	"author": {
 		"name": "Andrew Burton",
 		"email": "onge.uk@gmail.com",
-		"url": "https://pairs.onge.co.uk/"
+		"url": "https://pairs.onge.uk/"
 	},
 	"scripts": {
 		"serve": "webpack-dev-server --inline --hot",
-		"build":
-			"jest && rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js && node node_scripts/critical.js"
+		"build": "jest && rimraf dist && webpack --config webpack.config.prod.js -p --progress && node node_scripts/directory-tree.js && node node_scripts/critical.js"
 	},
 	"dependencies": {
 		"preact": "8.2.6",
