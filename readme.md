@@ -8,6 +8,8 @@
 
 _Pairs_ is a simple picture matching game that I've designed and built to play with my young children. Primarily an offline-first progressive web app designed to be played on a tablet, _Pairs_ can be played on any device using the latest version of a modern browser (no, not you, Internet Explorer).
 
+On this project, I used Redux and [Three.js](https://threejs.org/) for the first time, continued experimenting with CSS3 Grid and further evaluated [Preact](https://preactjs.com/).
+
 ## Core technologies used
 
 -   [Preact](https://preactjs.com/)
